@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Awesome Icon Selector</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        .icon-container {
+            display: flex;
+            align-items: center;
+            color: red;
+        }
+        .icon-container i {
+            margin-right: 8px; /* Add spacing between the icon and text */
+        }
+        .icon-list {
+            border: 1px solid #ccc;
+            max-height: 200px;
+            overflow-y: auto;
+            position: absolute;
+            background: white;
+            width: 100%;
+            z-index: 1;
+        }
+        .icon-item {
+            padding: 8px;
+            cursor: pointer;
+        }
+        .icon-item:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="icon-selector">
+    <input type="text" id="icon-search" placeholder="Search for an icon...">
+    <div id="icon-recommendations" class="icon-list"></div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/iconsearch.js"></script>
+
+</body>
+</html>

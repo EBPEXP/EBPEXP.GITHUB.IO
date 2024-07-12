@@ -1,0 +1,136 @@
+:root{
+    --expRed:#DC123C;
+}
+html {
+    font-size: 16px; /* Base font size */
+}
+@media (min-width: 768px) {
+    html {
+        font-size: 18px; /* Increase base font size for tablets */
+    }
+}
+
+@media (min-width: 1024px) {
+    html {
+        font-size: 18px; /* Increase base font size for desktops */
+    }
+}
+
+@media (min-width: 1440px) {
+    html {
+        font-size: 20px; /* Increase base font size for desktops */
+    }
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    min-width: 320px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    font-size: medium;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: calc(100vh - 25%); /* Adjust based on the combined height of the fixed navbar and footer */
+    border-radius: 8px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header img{
+    background-color: var(--expRed);
+    width:150px;
+    padding: 8px 0;
+}
+
+.navbar {
+    background-color: #ffffff;
+    padding: 10px 15px;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+.form-heading {
+    width: 42%;
+    margin-left: 29%;
+    margin-top: -2.6%;
+    background-color: #DC123C;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 10px 0 5px;
+}
+
+input[type="text"], input[type="file"], textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+/* .dropdown-center{
+    width: 230px;
+}
+#dropdownButton{
+    width: 100%;
+} */
+
+.icon-container {
+    display: flex;
+    align-items: center;
+    color: red;
+}
+.icon-container i {
+    margin-right: 8px; /* Add spacing between the icon and text */
+}
+.icon-list {
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+    position: absolute;
+    background: white;
+    z-index: 1;
+}
+.icon-item {
+    padding: 8px;
+    cursor: pointer;
+}
+.icon-item:hover {
+    background-color: #f0f0f0;
+}
+
+.submit-button .btn {
+    background-color: #DC123C;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 200px;
+}
+
+.footer {
+    background-color: #f1f1f1;
+    padding: 3px;
+    height: 25px;
+    width: 100%;
+    font-size: 0.65rem;
+    text-align: center;
+    border-top: 1px solid #e3e3e3;
+}
+

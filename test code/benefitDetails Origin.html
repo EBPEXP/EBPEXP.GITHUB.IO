@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Benefits Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/benefitDetail.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+</head>
+
+<body class="d-flex flex-column">
+  <!-- Loading Animation -->
+  <!-- <div id="loading-animation" class="loading-animation">
+    <p class="loading-text">Employee Benefits Portal</p>
+    <i class="fas fa-spinner fa-pulse"></i>
+  </div> -->
+    <header class="navbar navbar-expand-lg navbar-light bg-light px-3">
+        <a class="navbar-brand" href="index.html"><img src="images/logo-light.png"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <!-- <li class="nav-item"><a class="nav-link" href="#">Benefit Details</a></li> -->
+                <li class="nav-item"><a class="nav-link" href="/templates/admin/adminhome.html">Admin</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="d-flex">
+        <div class="navbar navbar-expand-md p-0 align-items-start justify-content-center" style="display: unset;">
+            <button class="navbar-toggler p-0 m-1" type="button" data-bs-toggle="collapse" data-bs-target="#leftNav" aria-controls="leftNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="leftNav" class="collapse navbar-collapse leftNav flex-column p-2">
+                <div class="leftNavBanner w-100 mt-2 mb-3 pt-2 pb-1">
+                <!-- add image  -->
+                <i class="fa-solid fa-handshake"></i>
+                <h1>Statutory Benefit</h1>
+                </div>
+                <div class="horizontalLine"></div>
+                <h6 class="mt-3">
+                Benefit List
+                </h6>
+                <!-- toggle the leftNavActive class to respective divs to give it a border  -->
+                <div class="leftNavList w-100 mb-3 p-2">
+                <ul class="nav flex-column" id="benefit-menu">
+                    <!-- <li class="nav-item navItem">
+                    <a class="nav-link navLink leftNavActive" href="#">Benefit 1</a>
+                    </li>
+                    <li class="nav-item navItem">
+                    <a class="nav-link" href="#">Benefit 2</a>
+                    </li>
+                    <li class="nav-item navItem">
+                    <a class="nav-link" href="#">Benefit 3</a>
+                    </li>
+                    <li class="nav-item navItem">
+                    <a class="nav-link" href="#">Benefit 4</a>
+                    </li>
+                    <li class="nav-item navItem">
+                    <a class="nav-link" href="#">Benefit 5</a>
+                    </li>
+                    <li class="nav-item navItem">
+                    <a class="nav-link" href="#">Benefit 6</a>
+                    </li>
+                    <li class="nav-item navItem">
+                    <a class="nav-link" href="#">Benefit 7</a>
+                    </li>
+                    <li class="nav-item navItem">
+                    <a class="nav-link" href="#">Benefit 8</a>
+                    </li>
+                    <li class="nav-item navItem">
+                    <a class="nav-link" href="#">Benefit 9</a>
+                    </li>
+                    <li class="nav-item navItem">
+                    <a class="nav-link" href="#">Benefit 10</a>
+                    </li>
+                    <li class="nav-item navItem">
+                    <a class="nav-link" href="#">Benefit 11</a>
+                    </li>
+                    <li class="nav-item navItem">
+                    <a class="nav-link" href="#">Benefit 12</a>
+                    </li> -->
+                </ul>
+                </div>
+                <!-- <div class="horizontalLine"></div> -->
+            </div>
+        </div>
+        <div class="rightContainer d-flex flex-column p-3 pb-4 w-100">
+        <div class="heading">
+            <h1 id="benefit-title">_ _ _ _ _ _ _</h1>
+        </div>
+        <p class="description mt-3 mb-0" id="description">_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ </p>
+        <!-- Div to display the content -->
+        <div id="benefit-content"></div>
+
+        <div class="faq">
+            <h5>FAQ</h5>
+            <div class="accordion" id="accordionContainer">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+                  </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionContainer">
+                  <div class="accordion-body p-2">
+                    _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+                  </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionContainer">
+                  <div class="accordion-body p-2">
+                    _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+                  </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionContainer">
+                  <div class="accordion-body p-2">
+                    _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <!-- <div id="editor-container" style="height: 150px;"></div>
+        <button id="display-content-btn">Display Content</button> -->
+      </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Employee Benefits Portal. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <!--Quill library -->
+    <!-- <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script> -->
+    <!-- <script src="js/data.js"></script> -->
+    <script type="module" src="js/benefitDetails.js"></script>
+    
+</body>
+
+</html>

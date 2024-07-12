@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add/Edit Benefit</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <style>
+    
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Add/Edit Benefit</h1>
+    <form id="benefit-form">
+      <label for="name">Benefit Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="icon">Benefit Icon (FontAwesome class or image URL):</label>
+      <input type="text" id="icon" name="icon" required>
+
+      <label for="description">Benefit Description:</label>
+      <textarea id="description" name="description" required></textarea>
+
+      <label for="content">Benefit Content (HTML):</label>
+      <textarea id="content" name="content" required></textarea>
+
+      <h3>FAQs</h3>
+      <div id="faqs-container">
+        <div class="faq">
+          <label>Question:</label>
+          <input type="text" name="faq-question" required>
+          <label>Answer:</label>
+          <textarea name="faq-answer" required></textarea>
+          <button type="button" class="remove-faq">Remove FAQ</button>
+        </div>
+      </div>
+      <button type="button" id="add-faq">Add FAQ</button>
+
+      <label for="categoryId">Category ID:</label>
+      <input type="text" id="categoryId" name="categoryId" required>
+
+      <label for="views">Views:</label>
+      <input type="number" id="views" name="views" required>
+
+      <button type="submit">Save Benefit</button>
+    </form>
+  </div>
+  <script type="module" src="js/firebase/benefit.js" defer></script>
+</body>
+</html>

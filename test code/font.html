@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FontAwesome Icons</title>
+</head>
+<body>
+    <h1>FontAwesome Icons List</h1>
+    <ul id="icons-list"></ul>
+
+    <script>
+        const apiKey = 'A4AD430F-846D-4126-B09F-504D52A6E9E9'; // Replace with your actual API key
+        const apiUrl = 'https://api.fontawesome.com/v6/icons'; // Adjusted endpoint
+
+        // Function to fetch icons
+        const getIcons = async () => {
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${apiKey}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                console.log(data);
+                return data; // The structure might be data.icons or data.data depending on the API response
+            } catch (error) {
+                console.error('Error fetching icons:', error);
+            }
+        };
+
+        // Function to display icons
+        const displayIcons = async () => {
+            const icons = await getIcons();
+            console.log(icons); // Check the structure of the returned data here
+            const iconsList = document.getElementById('icons-list');
+            if (icons && icons.data) { // Adjusted based on possible data structure
+                icons.data.forEach(icon => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = icon.id; // Adjust based on available properties
+                    iconsList.appendChild(listItem);
+                });
+            }
+        };
+
+        // Fetch and display icons on page load
+        window.onload = displayIcons;
+    </script>
+</body>
+</html>

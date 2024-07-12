@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/admin/delete_benefit/delete_benefit_form.css">
+    <title>Delete Benefit</title>
+</head>
+<body>
+    <header class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <a class="navbar-brand" href="/index.html"><img src="/images/logo-light.png" alt="Logo"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="/index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link activeColor" href="/admin/home/adminhome.html">Admin</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="form_body mt-5 pt-5">
+        <div class="form-heading text-center text-white bg-danger mb-3">Delete A Benefit</div>
+        <form id="delete-benefit-form">
+            <div class="mb-3 text-center">
+                <label for="benefit-select" class="form-label">Choose The Benefit</label>
+                <select class="form-select" id="benefit-select" name="benefit" >
+                    <option selected>Choose</option>
+                </select>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </div>
+            <div id="message-box" style="display: none;"></div>
+
+        </form>
+    </div>
+
+    <footer class="footer bg-light mt-5 fixed-bottom">
+        <p>&copy; 2024 Employee Benefits Portal. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <!-- <script src="/js/data.js"></script> -->
+    <script type="module" src="/admin/delete_benefit/delete_benefit_form.js" defer></script>
+</body>
+</html>

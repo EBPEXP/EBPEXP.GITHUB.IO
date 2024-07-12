@@ -1,0 +1,85 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    width: 65%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    font-size: medium;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow:scroll;
+    height: calc(100vh - 25%); /* Adjust based on the combined height of the fixed navbar and footer */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    color: red;
+}
+
+header nav a {
+    margin-left: 20px;
+    color: red;
+    text-decoration: none;
+}
+
+.form-heading {
+    width: 42%;
+    margin-left: 29%;
+    margin-top: -2.6%;
+    background-color: #DC123C;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 10px 0 5px;
+}
+
+input[type="text"], input[type="file"], textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+.submit-button {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.submit-button .btn {
+    background-color: #DC123C;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.footer {
+    height: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+}
+
+.footer p {
+    margin: 0;
+}
+
