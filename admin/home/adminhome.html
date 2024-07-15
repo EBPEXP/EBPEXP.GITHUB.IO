@@ -49,18 +49,21 @@
             <div class="mailheading d-flex flex-column justify-content-center align-items-center">
                 <h3>Give Admin Privilege to Others.</h3>
                 <p>Enter Experion mail id's of employees who need to have admin privileges</p>
-            </div>
-            <hr class="vertical-divider1">
-            <div class="d-flex flex-column justify-content-center align-items-center mt-3 mt-lg-0">
                 <div class="input-wrapper d-flex justify-content-center align-items-center">
                     <input type="email" placeholder="Enter Experion mail id" class="email-input">
-                    <button class="subscribe-button" id="addAdminButton">Add Admin</button>
+                    <button class="subscribe-button" id="addAdminButton" data-bs-toggle="modal" data-bs-target="#passwordModal">Add Admin</button>
                 </div>
                 <div id="error-message" class="text-danger"></div>
             </div>
+            <hr class="vertical-divider1">
+            <div class="d-flex flex-column justify-content-center align-items-center mt-3 mt-lg-0">
+                <div class="d-flex justify-content-center align-items-center mt-5 mt-lg-0">
+                    <button class="subscribe-button" onclick="window.location.href='/admin/list_all_admins/admin_revoke_permission.html'">View All Admins</button>
+                </div>
+            </div>
             <hr class="vertical-divider2">
             <div class="d-flex justify-content-center align-items-center mt-5 mt-lg-0">
-                <button class="subscribe-button" id="addAdminButton">View All Admins</button>
+                <button class="subscribe-button" id="editHrContactButton" data-bs-toggle="modal" data-bs-target="#editHrContactModal">Edit HR Contact</button>
             </div>
         </section>
     </main>
@@ -68,6 +71,63 @@
     <footer class="footer">
         <p>&copy; 2024 Employee Benefits Portal. All Rights Reserved.</p>
     </footer>
+
+    <!-- Edit HR Contact Modal -->
+    <div class="modal fade" id="editHrContactModal" tabindex="-1" aria-labelledby="editHrContactModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editHrContactModalLabel">Edit HR Contact</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editHrContactForm">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone" placeholder="123-456-7890">
+                        </div>
+                        <div class="mb-3">
+                            <label for="teamsMail" class="form-label">Teams Mail</label>
+                            <input type="email" class="form-control" id="teamsMail" placeholder="teams@example.com">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="saveChangesButton">Save changes</button>
+                </div>
+                <p id="result" class="text-danger text-center"></p>
+            </div>
+        </div>
+    </div>
+
+<!-- Password Modal -->
+<div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="passwordModalLabel">Enter Password</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Please enter your password for <span id="userEmail"></span> to confirm:</p>
+          <input type="password" id="passwordInput" class="form-control" placeholder="Enter your password">
+          <div id="error-message" class="text-danger mt-2"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="passwordModalCloseButton" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" id="passwordSubmitButton" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

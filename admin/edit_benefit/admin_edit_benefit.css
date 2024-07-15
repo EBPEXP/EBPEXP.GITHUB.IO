@@ -6,7 +6,7 @@ html {
 }
 @media (min-width: 768px) {
     html {
-        font-size: 18px; /* Increase base font size for tablets */
+        font-size: 17px; /* Increase base font size for tablets */
     }
 }
 

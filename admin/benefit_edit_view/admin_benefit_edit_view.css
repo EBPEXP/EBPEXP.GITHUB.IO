@@ -1,7 +1,26 @@
 :root{
   --expRed:#DC123C;
 }
+html {
+  font-size: 16px; /* Base font size */
+}
+@media (min-width: 768px) {
+  html {
+      font-size: 17px; /* Increase base font size for tablets */
+  }
+}
 
+@media (min-width: 1024px) {
+  html {
+      font-size: 18px; /* Increase base font size for desktops */
+  }
+}
+
+@media (min-width: 1440px) {
+  html {
+      font-size: 20px;
+  }
+}
 body {
   font-family: Arial, sans-serif;
   background-color: #f8f9fa;

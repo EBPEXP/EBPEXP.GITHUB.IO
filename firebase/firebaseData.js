@@ -1,10 +1,11 @@
 import { db } from './firebaseConfig.js';
 import { collection, getDocs, doc, getDoc, updateDoc, query, where } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 
-// Global arrays to store categories and benefits data
+// Global arrays to store categories, benefits, icons, and HR contact details data
 let categories = [];
 let benefits = [];
 let iconsData = [];
+let hrContactDetails = [];
 
 // Function to fetch data from Firestore and store it in global arrays
 const fetchDataFromFirestore = async () => {
@@ -30,11 +31,16 @@ const fetchDataFromFirestore = async () => {
         } else {
             console.error('No such document!');
         }
-        
+
+        // Fetch HR contact details data
+        const hrContactDetailsSnapshot = await getDocs(collection(db, 'HR-contact-details'));
+        hrContactDetails = hrContactDetailsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
         // Cache data in localStorage
         localStorage.setItem('categories', JSON.stringify(categories));
         localStorage.setItem('benefits', JSON.stringify(benefits));
         localStorage.setItem('iconsData', JSON.stringify(iconsData));
+        localStorage.setItem('hrContactDetails', JSON.stringify(hrContactDetails));
 
     } catch (e) {
         console.error('Error fetching data: ', e);
@@ -46,8 +52,9 @@ const fetchData = async () => {
     const cachedCategories = localStorage.getItem('categories');
     const cachedBenefits = localStorage.getItem('benefits');
     const cachedIconsData = localStorage.getItem('iconsData');
+    const cachedHRContactDetails = localStorage.getItem('hrContactDetails');
 
-    if (cachedCategories && cachedBenefits && cachedIconsData) {
+    if (cachedCategories && cachedBenefits && cachedIconsData && cachedHRContactDetails) {
         categories = JSON.parse(cachedCategories);
         benefits = JSON.parse(cachedBenefits).map(benefit => {
             // Ensure ID is a number if it should be
@@ -55,6 +62,7 @@ const fetchData = async () => {
             return benefit;
         });
         iconsData = JSON.parse(cachedIconsData);
+        hrContactDetails = JSON.parse(cachedHRContactDetails);
     } else {
         await fetchDataFromFirestore();
     }
@@ -93,4 +101,4 @@ const incrementViews = async (benefitId) => {
     }
 };
 
-export { fetchData, forceFetchData, incrementViews, categories, benefits, iconsData };
+export { fetchData, forceFetchData, incrementViews, categories, benefits, iconsData, hrContactDetails };

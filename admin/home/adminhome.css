@@ -1,6 +1,26 @@
 :root{
     --expRed:#DC123C;
 }
+html {
+    font-size: 16px; /* Base font size */
+}
+@media (min-width: 768px) {
+    html {
+        font-size: 17px; /* Increase base font size for tablets */
+    }
+}
+
+@media (min-width: 1024px) {
+    html {
+        font-size: 18px; /* Increase base font size for desktops */
+    }
+}
+
+@media (min-width: 1440px) {
+    html {
+        font-size: 20px;
+    }
+}
 body {
     /* display: flex; */
     /* flex-direction: column; */
@@ -158,7 +178,7 @@ header img{
     background-color: white;
     background-image: url('/images/image\ 17\ \(2\).png');
     background-size: cover;
-    background-position: left center;
+    background-position: center;
     /* padding: 30px;
     margin: 20px;
     border-radius: 10px;*/
@@ -170,6 +190,7 @@ header img{
                 -4px 0 6px rgba(0, 0, 0, 0.1), /* top-left shadow */
                 4px 0 6px rgba(0, 0, 0, 0.1);
 }
+
 
 /* .mailheading{
     display: flex;

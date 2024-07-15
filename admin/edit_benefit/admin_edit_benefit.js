@@ -9,6 +9,19 @@ let id = params.get('id');
 // let id = '2';
 //Initialize Quill editor
 var quill = new Quill('#editor-container', {
+    modules: {
+        toolbar: [
+            [{ header: [1, 2, 3, false] }],
+            ['bold', 'italic', 'underline', 'link'],  // Text styling options
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],  // List options
+        //   ['image'],  // Link and image insertion
+            [{ 'color': [] }, { 'background': [] }],  // Font color and background color
+            [{ 'align': [] }],  // Text alignment
+            ['blockquote'],  // Quote and code block
+            ['clean'],  // Remove formatting
+        ],
+    },
+    placeholder: 'Add benefit details...',
     theme: 'snow'
 });
 

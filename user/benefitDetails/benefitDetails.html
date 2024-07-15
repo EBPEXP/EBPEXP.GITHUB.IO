@@ -7,8 +7,9 @@
     <title>Employee Benefits Portal</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="/user/benefitDetails/benefitDetail.css">
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="/user/benefitDetails/benefitDetails.css">
+    <!-- <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet"> -->
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
 </head>
 
 <body class="d-flex flex-column">
@@ -25,9 +26,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="/index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link topNavLink" href="/index.html">Home</a></li>
                 <!-- <li class="nav-item"><a class="nav-link" href="#">Benefit Details</a></li> -->
-                <li class="nav-item"><a class="nav-link" href="/admin/home/adminhome.html">Admin</a></li>
+                <li class="nav-item"><a class="nav-link topNavLink" href="/admin/home/adminhome.html">Admin</a></li>
             </ul>
         </div>
     </header>
@@ -41,7 +42,8 @@
         <div id="leftNav" class="collapse navbar-collapse leftNav flex-column p-2">
           <div class="leftNavBanner w-100 mt-2 pt-2">
           <!-- add image  -->
-          <i class="fa-solid fa-handshake"></i>
+          <i class="fas fa-spinner fa-pulse"></i>
+          <!-- <i class="fa-solid fa-handshake"></i> -->
           <h6>Statutory Benefit</h6>
           </div>
           <div class="horizontalLine"></div>
@@ -49,10 +51,10 @@
           <!-- toggle the leftNavActive class to respective divs to give it a border  -->
           <div class="leftNavList w-100 mb-3">
             <ul class="nav flex-column" id="benefit-menu">
-              <!-- <li class="nav-item navItem">
-              <a class="nav-link navLink leftNavActive" href="#">Benefit 1</a>
+              <!-- <li class="nav-item leftNavItem">
+              <a class="nav-link leftNavLink leftNavActive" href="#">Benefit 1</a>
               </li>
-              <li class="nav-item navItem">
+              <li class="nav-item leftNavItem">
               <a class="nav-link" href="#">Benefit 12</a>
               </li> -->
             </ul>
@@ -61,9 +63,13 @@
         </div>
       </div>
       <div class="rightContainer row m-0 w-100">
-        <div class="col-12 col-lg-8 p-3">
-          <div class="heading">
+        <div id="div2Pdf" class="col-12 col-lg-8 p-3">
+          <div class="heading d-flex">
               <h1 id="benefit-title">_ _ _ _ _ _ _</h1>
+              <button id="downloadButton">
+                <!-- <i class="fa-solid fa-print "></i> -->
+                <i class="fa-solid fa-download"></i>
+              </button>
           </div>
           <p class="description mt-3 mb-0" id="description">_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ </p>
           <!-- Div to display the content -->
@@ -119,13 +125,19 @@
               <!-- <a href="mailto:" class="btn btn-danger">Mail Here</a> -->
               <a href="callto:" class="mt-2 text-decoration-none text-body p-1 rounded">
                 <i class="fa-solid fa-phone fa-lg me-1"></i>
-                <span class="text-decoration-none">1234567890</span>
+                <span id="phoneNo" class="text-decoration-none">1234567890</span>
               </a>
               <!-- <p>Phone: </p> -->
-              <a href="mailto:" class="my-2 text-decoration-none text-body p-1 rounded">
+              <a href="mailto:" class="mt-2 text-decoration-none text-body p-1 rounded">
                 <i class="fa-solid fa-envelope fa-lg"></i>
-                <span>hr@experionglobal.com</span>
+                <span id="email">hr@experionglobal.com</span>
               </a>
+              <div class="d-flex">
+                <h6 class="mb-0 pb-0"></h6>
+                <a id="teamsMessage" class="my-2 btn btn-danger" href="https://teams.microsoft.com/l/chat/0/0?users=user@example.com&message=Hello,%20how%20are%20you?"target="_blank">
+                  Chat with HR <i class="fa-solid fa-paper-plane"></i>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -139,6 +151,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js" integrity="sha512-MpDFIChbcXl2QgipQrt1VcPHMldRILetapBl5MPCA9Y8r7qvlwx1/Mc9hNTzY+kS5kX6PdoDq41ws1HiVNLdZA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!--Quill library -->
     <!-- <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script> -->
     <!-- <script src="js/data.js"></script> -->

@@ -1,5 +1,6 @@
-import { fetchData,incrementViews, categories, benefits} from '/firebase/firebaseData.js';
+import { fetchData,incrementViews, categories, benefits, hrContactDetails} from '/firebase/firebaseData.js';
 
+const benefitId = getBenefitIdFromURL();
 document.addEventListener("DOMContentLoaded", async() => {
   // const loadingAnimation = document.getElementById('loading-animation');
 
@@ -26,7 +27,26 @@ document.addEventListener("DOMContentLoaded", async() => {
     populateMenu(benefitId);
     const incrementIntBenefitId = parseInt(benefitId, 10);
     incrementViews(incrementIntBenefitId);
+    populateHRdetails(benefitId);
   }
+});
+
+//download feature
+const downloadButton = document.getElementById('downloadButton');
+downloadButton.addEventListener('click', function () {
+  downloadButton.style.display = 'none';
+  const benefitName = getBenefitById(benefits, benefitId).name;
+  var opt = {
+    margin:       0.3, // Margin around the content in inches
+    filename:     `${benefitName}.pdf`, // Name of the generated PDF file
+    image:        { type: 'jpeg', quality: 0.98 }, // Image settings for the PDF
+    html2canvas:  { scale: 4 }, // Scaling factor for html2canvas to improve quality
+    jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' } // PDF settings
+  };
+  var element = document.getElementById('div2Pdf');
+  html2pdf().from(element).set(opt).save().then(function() {
+    downloadButton.style.display = 'block';
+  });
 });
 
 // Function to get the benefit ID from the URL
@@ -70,11 +90,11 @@ function populateMenu(benefitId) {
   benefits.forEach((benefit) => {
     if (benefit.categoryId == getBenefitById(benefits, benefitId).categoryId) {
       const menuItem = document.createElement("li");
-      menuItem.classList.add("nav-item", "navItem");
+      menuItem.classList.add("nav-item", "leftNavItem");
       if (benefit.id == benefitId) {
-        menuItem.innerHTML = `<a class="nav-link navLink leftNavActive" href="?id=${benefit.id}">${benefit.name}</a>`;
+        menuItem.innerHTML = `<a class="nav-link leftNavLink leftNavActive" href="?id=${benefit.id}">${benefit.name}</a>`;
       } else {
-        menuItem.innerHTML = `<a class="nav-link navLink" href="?id=${benefit.id}">${benefit.name}</a>`;
+        menuItem.innerHTML = `<a class="nav-link leftNavLink" href="?id=${benefit.id}">${benefit.name}</a>`;
       }
       benefitsMenu.appendChild(menuItem);
     }
@@ -112,7 +132,25 @@ function displayBenefitDetails(benefitId) {
             `;
       faqContainer.appendChild(faqItem);
     });
+    if(document.getElementById('collapse0'))
+      {
+    document.getElementById('collapse0').classList.add("show");
+      }
   }
+}
+
+//function to populate hr contact details
+function populateHRdetails(benefitId){
+  // console.log("details:",hrContactDetails[0].teamsmail);
+  const phoneNo = document.getElementById("phoneNo");
+  const email = document.getElementById("email");
+  const teamsMessage = document.getElementById("teamsMessage");
+  phoneNo.textContent = hrContactDetails[0].contactnumber;
+  phoneNo.parentElement.setAttribute("href","tel:"+hrContactDetails[0].contactnumber);
+  email.textContent= hrContactDetails[0].email;
+  email.parentElement.setAttribute("href","mailto:"+hrContactDetails[0].email);
+  const benefitName = getBenefitById(benefits, benefitId).name;
+  teamsMessage.setAttribute("href","https://teams.microsoft.com/l/chat/0/0?users="+hrContactDetails[0].teamsmail+"&message=Hello%20I%20had%20a%20query%20on%20"+benefitName);
 }
 
 // Initialize Quill editor
