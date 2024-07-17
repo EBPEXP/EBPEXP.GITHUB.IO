@@ -148,8 +148,8 @@ function populateHRdetails(benefitId){
   phoneNo.textContent = hrContactDetails[0].contactnumber;
   phoneNo.parentElement.setAttribute("href","tel:"+hrContactDetails[0].contactnumber);
   email.textContent= hrContactDetails[0].email;
-  email.parentElement.setAttribute("href","mailto:"+hrContactDetails[0].email);
   const benefitName = getBenefitById(benefits, benefitId).name;
+  email.parentElement.setAttribute("href","mailto:"+hrContactDetails[0].email+"?subject=Query on " + benefitName);
   teamsMessage.setAttribute("href","https://teams.microsoft.com/l/chat/0/0?users="+hrContactDetails[0].teamsmail+"&message=Hello%20I%20had%20a%20query%20on%20"+benefitName);
 }
 

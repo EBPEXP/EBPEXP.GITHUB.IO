@@ -1,259 +1,270 @@
-:root{
-    --expRed:#DC123C;
+:root {
+  --expRed: #dc123c;
 }
 html {
-    font-size: 16px; /* Base font size */
+  font-size: 16px; /* Base font size */
 }
 @media (min-width: 768px) {
-    html {
-        font-size: 17px; /* Increase base font size for tablets */
-    }
+  html {
+    font-size: 17px; /* Increase base font size for tablets */
+  }
 }
 
 @media (min-width: 1024px) {
-    html {
-        font-size: 18px; /* Increase base font size for desktops */
-    }
+  html {
+    font-size: 18px; /* Increase base font size for desktops */
+  }
 }
 
 @media (min-width: 1440px) {
-    html {
-        font-size: 20px;
-    }
+  html {
+    font-size: 20px;
+  }
 }
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
-    color: #343a40;
-    padding: 0;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  color: #343a40;
+  padding: 0;
 }
 header {
-    background-color: #f8f9fa;
-    width: 100%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #f8f9fa;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-header img{
-    background-color: var(--expRed);
-    width:150px;
-    padding: 8px 0;
+header img {
+  background-color: var(--expRed);
+  width: 150px;
+  padding: 8px 0;
 }
 .navbar {
-    border-bottom: 1px solid #e3e3e3;
+  border-bottom: 1px solid #e3e3e3;
 }
 
 .navbar-brand {
-    /* font-size: 1.5rem; */
-    color: var(--expRed);
-    text-decoration: none;
-    font-weight: bold;
+  color: var(--expRed);
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .topNavLink {
-    color: black;
-    font-size: 0.8rem;
-    /* font-weight: bold; */
+  color: black;
+  font-size: 0.9rem;
+  font-weight: bold;
 }
-.topNavLink:hover{
-    color: var(--expRed);
-}
-
-.activeColor{
-    font-size: 1rem;
-    color: var(--expRed);
-    font-weight: bolder;
+.topNavLink:hover {
+  color: var(--expRed);
 }
 
-main{
-    width: 100%;
+.activeColor {
+  font-size: 0.9rem;
+  color: var(--expRed);
+  font-weight: bolder;
 }
-.leftNav{
-    width:180px;
+
+main {
+  width: 100%;
 }
-.leftNavBanner{
-    height: fit-content;
-    border: 2px solid var(--expRed);
-    border-radius: 8px;
-    text-align: center;
+.leftNav {
+  width: 180px;
 }
-.leftNavBanner h6{
-    margin-top: 0.6rem;
-    font-size: 1rem;
+.leftNavBanner {
+  height: fit-content;
+  border: 2px solid var(--expRed);
+  border-radius: 8px;
+  text-align: center;
 }
-.leftNavBanner i{
-    font-size: 3.5rem;
-    color: var(--expRed);
+.leftNavBanner h6 {
+  margin-top: 0.6rem;
+  font-size: 1rem;
 }
-.leftNavList{
-    border-radius: 5px;
-    border: 1px solid var(--expRed);
+.leftNavBanner i {
+  font-size: 3.5rem;
+  color: var(--expRed);
 }
-.leftNavItem{
-    /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); */
-    border-radius: 5px;
-    margin:3px;
+.leftNavList {
+  border-radius: 5px;
+  border: 1px solid var(--expRed);
 }
-.leftNavLink{
-    border-radius: 5px;
-    padding: 0.3rem 0.1rem;
-    text-align: center;
-    color: black;
-    font-size: 0.6rem;
-    border:1.35px solid black;
+.leftNavItem {
+  /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); */
+  border-radius: 5px;
+  margin: 3px;
 }
-.leftNavLink:hover{
-    background-color: var(--expRed);
-    color: white;
+.leftNavLink {
+  border-radius: 5px;
+  padding: 0.3rem 0.1rem;
+  text-align: center;
+  color: black;
+  font-size: 0.6rem;
+  border: 1.35px solid black;
 }
-.leftNavActive{
-    border-radius: 5px;
-    background-color: var(--expRed);
-    transform: scale(1.01);
-    color: White;
-    border: hidden;
+.leftNavLink:hover {
+  background-color: var(--expRed);
+  color: white;
 }
-.horizontalLine{
-    background-color: #343a40;
-    height: 1px;
-    width: 85%;
-    margin:0.7rem 0;
+.leftNavActive {
+  border-radius: 5px;
+  background-color: var(--expRed);
+  transform: scale(1.01);
+  color: White;
+  border: hidden;
 }
-.rightContainer{
-    /* min-height: 83vh; */
-    background-color:#F1F1F1;
+.horizontalLine {
+  background-color: #343a40;
+  height: 1px;
+  width: 85%;
+  margin: 0.7rem 0;
 }
-.heading{
-    background-color: var(--expRed);
-    padding: 0.5rem;
-    border-radius: 10px;
+.rightContainer {
+  /* min-height: 83vh; */
+  background-color: #f1f1f1;
 }
-.heading h1{
-    font-size: 1.2rem;
-    margin: 0 auto;
-    width: fit-content;
-    background-color: white;
-    color: black;
-    text-align: center;
-    border-radius: 10px;
-    padding: 0.5rem;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
+.heading {
+  background-color: var(--expRed);
+  padding: 0.5rem;
+  border-radius: 10px;
 }
-.description{
-    background-color: white;
-    font-size: 0.8rem;
-    padding: 0.8rem;
-    border-radius: 10px 10px 0 0;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+.heading h1 {
+  font-size: 1.2rem;
+  margin: 0 auto;
+  width: fit-content;
+  background-color: white;
+  color: black;
+  text-align: center;
+  border-radius: 10px;
+  padding: 0.5rem;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
 }
-#div2Pdf{
-    margin: 0 auto;
+.description {
+  background-color: white;
+  font-size: 0.8rem;
+  padding: 0.8rem;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
 }
-#div2Pdf button{
-    background-color: var(--expRed);
-    border: none;
-    color: white;
+#div2Pdf {
+  margin: 0 auto;
 }
-#div2Pdf button:hover{
-    transform: scale(1.2);
+#div2Pdf button {
+  background-color: var(--expRed);
+  border: none;
+  color: white;
 }
-#benefit-content{
-    font-size: 0.8rem;
-    margin:0 auto;
-    width: 100%;
-    padding: 0.5rem 0.8rem; 
-    background-color: white;
-    border-radius: 0 0 10px 10px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+#div2Pdf button:hover {
+  transform: scale(1.2);
 }
-#benefit-content *{
-    margin-bottom: 0.3rem;
+#benefit-content {
+  font-size: 0.8rem;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0.5rem 0.8rem;
+  background-color: white;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
 }
-.faq{
-    /* width: 35%; */
-    /* margin: 0 auto; */
-    font-size: 0.8rem;
+#benefit-content * {
+  margin-bottom: 0.3rem;
 }
-.faq h5{
-    margin: 0 auto;
-    width: fit-content;
-    background-color: var(--expRed);
-    color: white;
-    text-align: center;
-    border-radius: 10px 10px 0 0;
-    padding: 0.2rem 5vw;
+/* quill align */
+.ql-align-left {
+  text-align: left;
 }
-#accordionContainer{
-    border-radius: 10px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+.ql-align-right {
+  text-align: right;
 }
-.accordion button{
-    font-size: 0.8rem;
+.ql-align-center {
+  text-align: center;
 }
-/* .accordion-button:target-within{
-    background-color: lightgreen;
-} */
-.accordion-body{
-    background-color: rgb(231, 255, 231);
-    border-top: 0.5px solid rgb(154, 154, 154);
+.ql-align-justify {
+  text-align: justify;
 }
-.accordion-button:not(.collapsed){
-    background-color: rgb(193, 255, 193);
+.faq {
+  font-size: 0.8rem;
+}
+.faq h5 {
+  margin: 0 auto;
+  width: fit-content;
+  background-color: var(--expRed);
+  color: white;
+  text-align: center;
+  border-radius: 10px 10px 0 0;
+  padding: 0.2rem 5vw;
+}
+#accordionContainer {
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+}
+.accordion button {
+  font-size: 0.8rem;
+}
+.accordion-body {
+  background-color: rgb(231, 255, 231);
+  border-top: 0.5px solid rgb(154, 154, 154);
+}
+.accordion-button:not(.collapsed) {
+  background-color: rgb(193, 255, 193);
 }
 .footer {
-    background-color: #f1f1f1;
-    padding: 3px;
-    height: 25px;
-    width: 100%;
-    font-size: 0.65rem;
-    text-align: center;
-    border-top: 1px solid #e3e3e3;
+  background-color: #f1f1f1;
+  padding: 3px;
+  height: 25px;
+  width: 100%;
+  font-size: 0.65rem;
+  text-align: center;
+  border-top: 1px solid #e3e3e3;
 }
-.contact{
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
-    font-size: 0.8rem;
-    background-color: white;
+.contact {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+  font-size: 0.8rem;
+  background-color: white;
 }
-.contact a{
-    margin: 0;
-    font-size: 0.7rem;
+.contact a {
+  margin: 0;
+  font-size: 0.7rem;
 }
-.contact p{
-    background-color: var(--expRed);
-    color: white;
-    margin: 0;
+.contact p {
+  background-color: var(--expRed);
+  color: white;
+  margin: 0;
 }
-.contact a{
-    border: 2px solid rgb(178, 178, 178);
+.contact a {
+  border: 2px solid rgb(178, 178, 178);
 }
-.contact a:hover{
-    border: 2px solid var(--expRed);
+.contact a:hover {
+  border: 2px solid var(--expRed);
 }
 /* loading animation css */
 .loading-animation {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Full viewport height */
-    background: linear-gradient(180deg, rgba(220,18,60,0.9) 39%, rgba(118,10,32,0.9) 71%);
-    color: #fff; /* White text color */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  background: linear-gradient(
+    180deg,
+    rgba(220, 18, 60, 0.9) 39%,
+    rgba(118, 10, 32, 0.9) 71%
+  );
+  color: #fff; /* White text color */
 }
 
 .loading-text {
-    margin-bottom: 1rem; /* Space between text and spinner */
-    font-size: 1.5rem; /* Adjust size of the text */
-    animation: scaleText 1s infinite alternate; /* Scale animation */
+  margin-bottom: 1rem; /* Space between text and spinner */
+  font-size: 1.5rem; /* Adjust size of the text */
+  animation: scaleText 1s infinite alternate; /* Scale animation */
 }
 
 @keyframes scaleText {
-    from {
-        transform: scale(1);
-    }
-    to {
-        transform: scale(1.1);
-    }
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
 }
 
 .loading-animation i {
-    font-size: 3rem; /* Adjust size of the spinner icon */
+  font-size: 3rem; /* Adjust size of the spinner icon */
 }

@@ -1,307 +1,396 @@
 import {
-    onAuthStateChanged,
-    signOut,
-    deleteUser,
-    EmailAuthProvider,
-    reauthenticateWithCredential,
-  } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
-  import {
-    deleteDoc,
-    doc,
-    getDoc,
-    setDoc,
-    collection,
-    query,
-    where,
-    getDocs,
-  } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
-  import { auth, db } from "/firebase/firebaseConfig.js";
-   
-  document.addEventListener("DOMContentLoaded", async () => {
-    try {
-      const adminListElement = document.getElementById("adminList");
-      const superAdminListElement = document.getElementById("superAdminList");
-   
-      const usersRef = collection(db, "authenticated-users");
-   
-      // Query Firestore for all users with the role 'super-admin'
-      onAuthStateChanged(auth, async (user) => {
-        if (user) {
-          const currentUserUid = user.uid;
-          console.log("Current User UID:", currentUserUid); // Debugging log
-   
-          const q1 = query(usersRef, where("role", "==", "super-admin"));
-          const querySnapshots = await getDocs(q1);
-   
-          querySnapshots.forEach((docSnapshot) => {
-            const userData = docSnapshot.data();
-            console.log("Document UID:", userData.uid); // Debugging log
-            console.log("current User ID: ", currentUserUid);
-            if (docSnapshot.id !== currentUserUid) {
-              // Filter out the current user
-              const email = userData.email;
-   
-              // Create the HTML structure for each admin
-              const userWrapper = document.createElement("div");
-              userWrapper.className =
-                "input-wrapper d-flex justify-content-between align-items-center border border-black rounded px-2";
-   
-              const emailSpan = document.createElement("span");
-              emailSpan.id = `emailID-superAdmin-${docSnapshot.id}`;
-              emailSpan.textContent = email;
-   
-              const buttonContainer = document.createElement("div");
-              buttonContainer.className = "d-flex align-end";
-   
-              const revokePermissionButton = document.createElement("button");
-              revokePermissionButton.className = "subscribe-button m-2 rounded";
-              revokePermissionButton.id = `revokePermissionButton-${docSnapshot.id}`;
-              revokePermissionButton.textContent = "Revoke Permission";
-   
-              buttonContainer.appendChild(revokePermissionButton);
-              userWrapper.appendChild(emailSpan);
-              userWrapper.appendChild(buttonContainer);
-              superAdminListElement.appendChild(userWrapper);
-   
-              // Attach event listener to the revoke permission button
-              revokePermissionButton.addEventListener("click", async () => {
-                const userEmail = emailSpan.textContent.trim();
-   
-                try {
-                  // Get current role
-                  const userDocRef = doc(
-                    db,
-                    "authenticated-users",
-                    docSnapshot.id
-                  );
-                  const userDocSnap = await getDoc(userDocRef);
-                  const currentRole = userDocSnap.data().role;
-   
-                  // Determine new role
-                  const newRole =
-                    currentRole === "super-admin"
-                      ? "normal-admin"
-                      : "super-admin";
-                  const newButtonText =
-                    newRole === "super-admin"
-                      ? "Revoke Permission"
-                      : "Add Permission";
-   
-                  // Update Firestore document
-                  await setDoc(userDocRef, { role: newRole }, { merge: true });
-   
-                  // Update button text
-                  revokePermissionButton.textContent = newButtonText;
-   
-                  console.log(`Role updated successfully for ${userEmail}`);
-                  location.reload();
-                  alert(`Role updated successfully for ${userEmail}`);
-                } catch (error) {
-                  console.error("Error updating role:", error);
-                  alert(
-                    "Failed to update role. Check console for error details."
-                  );
-                }
-              });
-   
-              console.log("Just to check");
-            } else {
-              console.log("Filtered out current user");
-            }
-          });
-        }
-      });
-   
-      // Query Firestore for users with the role 'normal-admin'
-      const q = query(usersRef, where("role", "in", ["normal-user", "normal-admin"]));
-      const querySnapshot = await getDocs(q);
-   
-      querySnapshot.forEach((docSnapshot) => {
-        const userData = docSnapshot.data();
-        const email = userData.email;
-   
-        // Create the HTML structure for each admin
-        const userWrapper = document.createElement("div");
-        userWrapper.className =
-          "input-wrapper d-flex justify-content-between align-items-center border border-black rounded px-2";
-   
-        const emailSpan = document.createElement("span");
-        emailSpan.id = `emailId-${docSnapshot.id}`;
-        emailSpan.textContent = email;
-   
-        const buttonContainer = document.createElement("div");
-        buttonContainer.className = "d-flex align-end";
-   
-        const addPermissionButton = document.createElement("button");
-        addPermissionButton.className = "subscribe-button m-2 rounded";
-        addPermissionButton.id = `addAdminButton-${docSnapshot.id}`;
-        addPermissionButton.textContent = "Make Super Admin";
-   
-        const deleteAdminButton = document.createElement("button");
-        deleteAdminButton.className = "subscribe-button m-2 rounded";
-        deleteAdminButton.id = `deleteAdminButton-${docSnapshot.id}`;
-        deleteAdminButton.textContent = "Revoke Permission";
-   
-        // Event listener for Add Permission button
-        addPermissionButton.addEventListener("click", async () => {
-          try {
-            // Update Firestore document
-            const userDocRef = doc(db, "authenticated-users", docSnapshot.id);
-            await setDoc(userDocRef, { role: "super-admin" }, { merge: true });
-   
-            console.log(`Role updated successfully for ${email}`);
-            alert(`Role updated successfully for ${email}`);
-            location.reload();
-          } catch (error) {
-            console.error("Error updating role:", error);
-            alert("Failed to update role. Check console for error details.");
-            location.reload();
+  onAuthStateChanged,
+  signOut,
+  deleteUser,
+  EmailAuthProvider,
+  reauthenticateWithCredential,
+} from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+import {
+  deleteDoc,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  query,
+  where,
+  getDocs,
+} from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
+import { auth, db } from "/firebase/firebaseConfig.js";
+
+// Execute when the DOM content is fully loaded
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    // Get elements to display admin and super admin lists
+    const adminListElement = document.getElementById("adminList");
+    const superAdminListElement = document.getElementById("superAdminList");
+    const inactiveAdminListElement = document.getElementById("inactiveadminList");
+
+    // Reference to the authenticated-users collection in Firestore
+    const usersRef = collection(db, "authenticated-users");
+
+    // Listen for changes in authentication state
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const currentUserUid = user.uid;
+        const currentUsermail = user.email;
+
+        let spanElement = document.getElementById('currentSuperAdmin');
+        spanElement.textContent = currentUsermail;
+
+        // Query for super-admin users
+        const q1 = query(usersRef, where("role", "==", "super-admin"));
+        const querySnapshots = await getDocs(q1);
+        const superAdminHeader = document.createElement("h3");
+        superAdminHeader.textContent = "Super-Admins";
+        superAdminHeader.className = "px-5 align-self-start";
+
+// Append the header to the super admin list element
+      superAdminListElement.appendChild(superAdminHeader);
+        
+        querySnapshots.forEach((docSnapshot) => {
+          const userData = docSnapshot.data();
+          
+          if (userData.email !== currentUsermail) {
+            
+            const email = userData.email;
+
+            // Create elements to display super-admin user info
+            const userWrapper = document.createElement("div");
+            userWrapper.className =
+              "input-wrapper d-flex justify-content-between align-items-center border border-black rounded px-2";
+
+            const emailSpan = document.createElement("span");
+            emailSpan.id = `emailID-superAdmin-${docSnapshot.id}`;
+            emailSpan.textContent = email;
+
+            const buttonContainer = document.createElement("div");
+            buttonContainer.className = "d-flex align-end";
+
+            const revokePermissionButton = document.createElement("button");
+            revokePermissionButton.className = "subscribe-button m-2 rounded";
+            revokePermissionButton.id = `revokePermissionButton-${docSnapshot.id}`;
+            revokePermissionButton.textContent = "Revoke Permission";
+
+            // Append elements to the DOM
+            buttonContainer.appendChild(revokePermissionButton);
+            userWrapper.appendChild(emailSpan);
+            userWrapper.appendChild(buttonContainer);
+            superAdminListElement.appendChild(userWrapper);
+
+            // Add event listener to revoke permission button
+            revokePermissionButton.addEventListener("click", async () => {
+              const userEmail = emailSpan.textContent.trim();
+
+              try {
+                const userDocRef = doc(db, "authenticated-users", docSnapshot.id);
+                const userDocSnap = await getDoc(userDocRef);
+                const currentRole = userDocSnap.data().role;
+
+                const newRole =
+                  currentRole === "super-admin"
+                    ? "normal-admin"
+                    : "super-admin";
+                const newButtonText =
+                  newRole === "super-admin"
+                    ? "Revoke Permission"
+                    : "Add Permission";
+
+                // Update user role in Firestore
+                await setDoc(userDocRef, { role: newRole }, { merge: true });
+
+                revokePermissionButton.textContent = newButtonText;
+
+                console.log(`Role updated successfully for ${userEmail}`);
+                alert(`Role updated successfully for ${userEmail}`);
+              } catch (error) {
+                console.error("Error updating role:", error);
+                alert(
+                  "Failed to update role. Check console for error details."
+                );
+              
+              }
+              location.reload();
+
+            });
           }
         });
-   
-        // Optionally, add event listeners to handle the delete button actions
-        deleteAdminButton.addEventListener("click", async () => {
-          const userEmail = emailSpan.textContent.trim();
-   
-          try {
-            // Get current role
-            const userDocRef = doc(db, "authenticated-users", docSnapshot.id);
-            const userDocSnap = await getDoc(userDocRef);
-            const currentRole = userDocSnap.data().role;
-   
-            // Determine new role
-            const newRole =
-              currentRole === "normal-admin" ? "normal-user" : "normal-admin";
-            const newButtonText =
-              newRole === "normal-admin" ? "Revoke Permission" : "Add Permission";
-   
-            // Update Firestore document
-            await setDoc(userDocRef, { role: newRole }, { merge: true });
-   
-            // Update button text
-            deleteAdminButton.textContent = newButtonText;
-   
-            console.log(`Role updated successfully for ${userEmail}`);
-            alert(`Role updated successfully for ${userEmail}`);
-          } catch (error) {
-            console.error("Error updating role:", error);
-            alert("Failed to update role. Check console for error details.");
+
+        // Query for normal-admin users
+        const q = query(usersRef, where("role", "==", "normal-admin"));
+        const querySnapshot = await getDocs(q);
+        
+        querySnapshot.forEach((docSnapshot) => {
+          
+          const userData = docSnapshot.data();
+          // console.log(userData.role);
+          const email = userData.email;
+
+          // Create elements to display normal users info
+          const userWrapper = document.createElement("div");
+          userWrapper.className =
+            "input-wrapper d-flex justify-content-between align-items-center border border-black rounded px-2";
+
+          const emailSpan = document.createElement("span");
+          emailSpan.id = `emailId-${docSnapshot.id}`;
+          emailSpan.textContent = email;
+
+          const buttonContainer = document.createElement("div");
+          buttonContainer.className = "d-flex align-end";
+
+          const addPermissionButton = document.createElement("button");
+          addPermissionButton.className = "subscribe-button m-2 rounded";
+          addPermissionButton.id = `addAdminButton-${docSnapshot.id}`;
+          addPermissionButton.textContent = "Make Super Admin";
+
+          const deleteAdminButton = document.createElement("button");
+          deleteAdminButton.className = "subscribe-button m-2 rounded";
+          deleteAdminButton.id = `deleteAdminButton-${docSnapshot.id}`;
+          deleteAdminButton.textContent = "Revoke Permission";
+
+          // Set initial button text based on current role
+          const currentRole = userData.role;
+          if (currentRole === "normal-admin") {
+            deleteAdminButton.textContent = "Revoke Permission";
+          } else {
+            deleteAdminButton.textContent = "Add Permission";
           }
-        });
-   
-        buttonContainer.appendChild(addPermissionButton);
-        buttonContainer.appendChild(deleteAdminButton);
-        userWrapper.appendChild(emailSpan);
-        userWrapper.appendChild(buttonContainer);
-        adminListElement.appendChild(userWrapper);
-      });
-    } catch (error) {
-      console.error("Error fetching users: ", error);
-      document.getElementById("error-message").textContent =
-        "Error loading admin users.";
-    }
-  });
-   
-  onAuthStateChanged(auth, async (user) => {
-    if (user) {
-      const uid = user.uid;
-      const userDocRef = doc(db, "authenticated-users", uid);
-      const userDocSnap = await getDoc(userDocRef);
-   
-      const email = user.email;
-      // const username = email.split("@")[0].split(".")[0];
-      // const capitalizedUsername =
-      //   username.charAt(0).toUpperCase() + username.slice(1);
-      // console.log(email);
-   
-      if (userDocSnap.exists()) {
-        const userData = userDocSnap.data();
-        if (userData.role === "super-admin") {
-          document.getElementById(
-            "greeting"
-          ).textContent = `Hi ${capitalizedUsername}`;
-          document.getElementById("emailId").textContent = email;
-          // Your additional code for super-admin
-        } else {
-          window.location.href = "adminhome.html"; // Redirect to home page
-          alert("You do not have the necessary permissions to access this page.");
-        }
-      } else {
-        console.log("No such document!");
-      }
-    } else {
-      window.location.href = "/index.html"; // Redirect to home page if not logged in
-    }
-  });
-   
-  onAuthStateChanged(auth, async (user) => {
-    if (user) {
-      // User is signed in, get the user's email
-      const email = user.email;
-      const username = email.split("@")[0].split(".")[0];
-      const capitalizedUsername =
-        username.charAt(0).toUpperCase() + username.slice(1);
-        console.log("username",capitalizedUsername);
-      // Update the greeting
-      document.getElementById("greeting").textContent = `Hi ${capitalizedUsername}`;
-
-
-   
-      // Handle delete button click
-      const deleteButton = document.getElementById("deleteAdminButton");
-      if (deleteButton) {
-        deleteButton.addEventListener("click", async () => {
-          // Confirm deletion
-          if (
-            confirm(
-              "Are you sure you want to delete your account? This action cannot be undone."
-            )
-          ) {
+          // quesry for normal-user
+          const qq = query(usersRef, where("role", "==", "normal-user"));
+          
+          // Add event listener to add permission button
+          addPermissionButton.addEventListener("click", async () => {
             try {
-              // Re-authenticate the user
-              const password = prompt(
-                "Please enter your password to confirm deletion:"
-              );
-              const credential = EmailAuthProvider.credential(
-                user.email,
-                password
-              );
-              await reauthenticateWithCredential(user, credential);
-   
-              // Delete user data from Firestore
-              await deleteUserData(user.uid);
-   
-              // Delete user
-   
-              // Delete user from Authentication
-              await deleteUser(user);
-   
-              // Sign out user
-              await signOut(auth);
-   
-              // Alert and redirect
-              alert("Your account has been deleted successfully.");
-              window.location.href = "index.html";
+              const userDocRef = doc(db, "authenticated-users", docSnapshot.id);
+              await setDoc(userDocRef, { role: "super-admin" }, { merge: true });
+
+              console.log(`Role updated successfully for ${email}`);
+              alert(`Role updated successfully for ${email}`);
             } catch (error) {
-              console.error("Error deleting user:", error);
-              alert("Failed to delete your account. Please try again later.");
+              console.error("Error updating role:", error);
+              alert("Failed to update role. Check console for error details.");
             }
+            location.reload();
+
+          });
+
+          // Add event listener to delete permission button
+          deleteAdminButton.addEventListener("click", async () => {
+            const userEmail = emailSpan.textContent.trim();
+
+            try {
+              const userDocRef = doc(db, "authenticated-users", docSnapshot.id);
+              const userDocSnap = await getDoc(userDocRef);
+              const currentRole = userDocSnap.data().role;
+
+              const newRole =
+                currentRole === "normal-admin" ? "normal-user" : "normal-admin";
+              const newButtonText =
+                newRole === "normal-admin" ? "Revoke Permission" : "Add Permission";
+
+              // Update user role in Firestore
+              await setDoc(userDocRef, { role: newRole }, { merge: true });
+
+              deleteAdminButton.textContent = newButtonText;
+
+              
+              alert(`Role updated successfully for ${userEmail}`);
+            } catch (error) {
+              
+              alert("Failed to update role. Check console for error details.");
+            }
+            location.reload();
+          });
+
+          // Append elements to the DOM
+          buttonContainer.appendChild(addPermissionButton);
+          buttonContainer.appendChild(deleteAdminButton);
+          userWrapper.appendChild(emailSpan);
+          userWrapper.appendChild(buttonContainer);
+          adminListElement.appendChild(userWrapper);
+        });
+        //Query for normal-users
+        const qq = query(usersRef, where("role", "==", "normal-user"));
+        const querySnapshot1 = await getDocs(qq);
+        
+        querySnapshot1.forEach((docSnapshot) => {
+          
+          const userData = docSnapshot.data();
+          console.log(userData.role);
+          const email = userData.email;
+
+          // Create elements to display normal users info
+          const userWrapper = document.createElement("div");
+          userWrapper.className =
+            "input-wrapper d-flex justify-content-between align-items-center border border-black rounded px-2";
+
+          const emailSpan = document.createElement("span");
+          emailSpan.id = `emailId-${docSnapshot.id}`;
+          emailSpan.textContent = email;
+
+          const buttonContainer = document.createElement("div");
+          buttonContainer.className = "d-flex align-end";
+
+          const addPermissionButton = document.createElement("button");
+          addPermissionButton.className = "subscribe-button m-2 rounded";
+          addPermissionButton.id = `addAdminButton-${docSnapshot.id}`;
+          addPermissionButton.textContent = "Make Super Admin";
+
+          const deleteAdminButton = document.createElement("button");
+          deleteAdminButton.className = "subscribe-button m-2 rounded";
+          deleteAdminButton.id = `deleteAdminButton-${docSnapshot.id}`;
+          deleteAdminButton.textContent = "Revoke Permission";
+
+          // Set initial button text based on current role
+          const currentRole = userData.role;
+          if (currentRole === "normal-admin") {
+            deleteAdminButton.textContent = "Revoke Permission";
+          } else {
+            deleteAdminButton.textContent = "Add Permission";
           }
+          
+          
+          // Add event listener to add permission button
+          addPermissionButton.addEventListener("click", async () => {
+            try {
+              const userDocRef = doc(db, "authenticated-users", docSnapshot.id);
+              await setDoc(userDocRef, { role: "super-admin" }, { merge: true });
+
+              console.log(`Role updated successfully for ${email}`);
+              alert(`Role updated successfully for ${email}`);
+            } catch (error) {
+              console.error("Error updating role:", error);
+              alert("Failed to update role. Check console for error details.");
+            }
+            location.reload();
+
+          });
+
+          // Add event listener to delete permission button
+          deleteAdminButton.addEventListener("click", async () => {
+            const userEmail = emailSpan.textContent.trim();
+
+            try {
+              const userDocRef = doc(db, "authenticated-users", docSnapshot.id);
+              const userDocSnap = await getDoc(userDocRef);
+              const currentRole = userDocSnap.data().role;
+
+              const newRole =
+                currentRole === "normal-admin" ? "normal-user" : "normal-admin";
+              const newButtonText =
+                newRole === "normal-admin" ? "Revoke Permission" : "Add Permission";
+
+              // Update user role in Firestore
+              await setDoc(userDocRef, { role: newRole }, { merge: true });
+
+              deleteAdminButton.textContent = newButtonText;
+
+              
+              alert(`Role updated successfully for ${userEmail}`);
+            } catch (error) {
+              
+              alert("Failed to update role. Check console for error details.");
+            }
+            location.reload();
+          });
+
+          // Append elements to the DOM
+          buttonContainer.appendChild(addPermissionButton);
+          buttonContainer.appendChild(deleteAdminButton);
+          userWrapper.appendChild(emailSpan);
+          userWrapper.appendChild(buttonContainer);
+          inactiveAdminListElement.appendChild(userWrapper);
         });
       }
-    } else {
-      // No user is signed in
-      document.getElementById("greeting").textContent = "Hi guest";
-    }
-  });
-   
-  // Function to delete user data
-  async function deleteUserData(userId) {
-    try {
-      await deleteDoc(doc(db, "authenticated-users", userId));
-      console.log("User data deleted successfully");
-    } catch (error) {
-      console.error("Error deleting user data:", error);
-      throw error;
-    }
+    });
+  } catch (error) {
+    console.error("Error fetching users: ", error);
+    document.getElementById("error-message").textContent =
+      "Error loading admin users.";
   }
+});
+
+// Listen for changes in authentication state to update UI
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    const uid = user.uid;
+    const userDocRef = doc(db, "authenticated-users", uid);
+    const userDocSnap = await getDoc(userDocRef);
+
+    const email = user.email;
+    const username = email.split("@")[0].split(".")[0];
+
+    if (userDocSnap.exists()) {
+      const userData = userDocSnap.data();
+      if (userData.role === "super-admin") {
+        document.getElementById(
+          "greeting"
+        ).textContent = `Hi ${capitalizedUsername}`;
+        document.getElementById("emailId").textContent = email; // Update email span here
+      } else {
+        window.location.href = '/index.html';
+        alert("You do not have the necessary permissions to access this page.");
+      }
+    } else {
+      console.log("No such document!");
+    }
+  } else {
+    window.location.href = "/index.html";
+  }
+});
+
+// Listen for changes in authentication state to handle user actions
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    const email = user.email;
+    const username = email.split("@")[0].split(".")[0];
+    const capitalizedUsername =
+    username.charAt(0).toUpperCase() + username.slice(1);
+
+    document.getElementById("greeting").textContent = `Hi ${capitalizedUsername}`;
+
+    const deleteButton = document.getElementById("deleteAdminButton");
+    if (deleteButton) {
+      // Add event listener to delete account button
+      deleteButton.addEventListener("click", async () => {
+        if (
+          confirm(
+            "Are you sure you want to delete your account? This action cannot be undone."
+          )
+        ) {
+          try {
+            const password = prompt(
+              "Please enter your password to confirm deletion:"
+            );
+            const credential = EmailAuthProvider.credential(
+              user.email,
+              password
+            );
+            await reauthenticateWithCredential(user, credential);
+
+            await deleteUserData(user.uid);
+
+            await deleteUser(user);
+
+            await signOut(auth);
+
+            alert("Your account has been deleted successfully.");
+            window.location.href = "/index.html";
+          } catch (error) {
+            console.error("Error deleting user:", error);
+            alert(
+              "Failed to delete user account. Please check console for details."
+            );
+          }
+        }
+      });
+    }
+  } else {
+    console.log("No user is signed in");
+  }
+});
+
+// Function to delete user data from Firestore
+async function deleteUserData(uid) {
+  const userDocRef = doc(db, "authenticated-users", uid);
+  await deleteDoc(userDocRef);
+}

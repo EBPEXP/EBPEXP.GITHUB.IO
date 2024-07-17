@@ -60,7 +60,7 @@ header img{
 
 .nav-link {
     color: black;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: bold;
 }
 .nav-link:hover{
@@ -68,25 +68,23 @@ header img{
 }
 
 .hero-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2%;
-    padding-bottom: 2%;
+    padding: 1.5%;
     background-color: var(--expRed);
 }
 
 .headingBox{
     background-color: #f8f9fa;
     border-radius: 10px;
-    padding: 1%;
+    padding: 1.3vw 2vw;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
 }
 .sideHeadingBox{
-    min-width: 160px;
+    margin: 5px;
+    padding: 1vw 1.6vw;
+    height: fit-content;
+    /* min-width: 160px; */
     background-color: #f8f9fa;
     border-radius: 10px;
-    padding: 1%;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
     text-decoration: none;
     color: #343a40;
@@ -95,9 +93,11 @@ header img{
 
 .hero-section h1{
     margin: 0;
+    font-size: 1.5rem;
+    text-align: center;
 }
 .sideHeadingBox:hover{
-    transform: scale(1.05);
+    transform: scale(1.2);
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
     background-color: #f8f9fa;
 }
@@ -153,7 +153,7 @@ header img{
     .popular-benefits h5{
         font-size: 0.6rem;
     }
-    .hero-section h1{
+    /* .hero-section h1{
         font-size: 1rem;
     }
     .hero-section a {
@@ -164,7 +164,7 @@ header img{
     }
     .sideHeadingBox{
         min-width: 120px;
-    }
+    } */
 }
 
 .footer {

@@ -47,8 +47,6 @@
           <h6>Statutory Benefit</h6>
           </div>
           <div class="horizontalLine"></div>
-          <!-- <h6 class="mt-3">Benefit List</h6> -->
-          <!-- toggle the leftNavActive class to respective divs to give it a border  -->
           <div class="leftNavList w-100 mb-3">
             <ul class="nav flex-column" id="benefit-menu">
               <!-- <li class="nav-item leftNavItem">
@@ -59,14 +57,13 @@
               </li> -->
             </ul>
           </div>
-          <!-- <div class="horizontalLine"></div> -->
         </div>
       </div>
       <div class="rightContainer row m-0 w-100">
         <div id="div2Pdf" class="col-12 col-lg-8 p-3">
           <div class="heading d-flex">
               <h1 id="benefit-title">_ _ _ _ _ _ _</h1>
-              <button id="downloadButton">
+              <button id="downloadButton" title="Download as pdf">
                 <!-- <i class="fa-solid fa-print "></i> -->
                 <i class="fa-solid fa-download"></i>
               </button>
@@ -117,17 +114,14 @@
               </div>
             </div>
           </div>
-          <!-- <div id="editor-container" style="height: 150px;"></div>
-          <button id="display-content-btn">Display Content</button> -->
+          
           <div class="contactHR col-12 col-md-4 col-lg-12 p-3 d-flex align-items-center">
             <div class="contact w-100 d-flex flex-column justify-content-center align-items-center rounded">
               <p class="text-center rounded-top w-100 py-2">Still your query not yet solved, contact:</p>
-              <!-- <a href="mailto:" class="btn btn-danger">Mail Here</a> -->
               <a href="callto:" class="mt-2 text-decoration-none text-body p-1 rounded">
                 <i class="fa-solid fa-phone fa-lg me-1"></i>
                 <span id="phoneNo" class="text-decoration-none">1234567890</span>
               </a>
-              <!-- <p>Phone: </p> -->
               <a href="mailto:" class="mt-2 text-decoration-none text-body p-1 rounded">
                 <i class="fa-solid fa-envelope fa-lg"></i>
                 <span id="email">hr@experionglobal.com</span>
@@ -154,6 +148,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js" integrity="sha512-MpDFIChbcXl2QgipQrt1VcPHMldRILetapBl5MPCA9Y8r7qvlwx1/Mc9hNTzY+kS5kX6PdoDq41ws1HiVNLdZA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!--Quill library -->
     <!-- <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
     <!-- <script src="js/data.js"></script> -->
     <script type="module" src="/user/benefitDetails/benefitDetails.js"></script>
     

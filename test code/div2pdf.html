@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML to PDF</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+</head>
+<body>
+    <div id="content">
+        <a href="https://experiontechnologies.sharepoint.com/SitePages/Home.aspx">click here</a>
+        <h1>Hello, World!</h1>
+        <p>This is a paragraph of text in the PDF. The text should be selectable and searchable.</p>
+    </div>
+    <button onclick="generatePDF()">Download PDF</button>
+
+    <script>
+        async function generatePDF() {
+            const { PDFDocument, rgb } = PDFLib;
+
+            // Create a new PDF document
+            const pdfDoc = await PDFDocument.create();
+            const page = pdfDoc.addPage();
+
+            // Get the content from the HTML
+            const content = document.getElementById('content').innerText;
+            
+            // Add text to the PDF
+            const { width, height } = page.getSize();
+            const fontSize = 24;
+            const textWidth = page.getWidth() - 2 * 72;
+            const textHeight = page.getHeight() - 2 * 72;
+            page.drawText(content, {
+                x: 72,
+                y: height - 4 * fontSize,
+                size: fontSize,
+                maxWidth: textWidth,
+                color: rgb(0, 0, 0),
+            });
+
+            // Serialize the PDFDocument to bytes (a Uint8Array)
+            const pdfBytes = await pdfDoc.save();
+
+            // Trigger the browser to download the PDF document
+            const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'output.pdf';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>

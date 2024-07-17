@@ -22,9 +22,6 @@ html {
     }
 }
 body {
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* justify-content: space-around; */
     /* height: 100vh; */
     margin: 0;
     font-family: Arial, sans-serif;
@@ -61,14 +58,14 @@ header img{
 
 .nav-link {
     color: black;
-    font-size: 1.2rem;
+    font-size: 0.9rem;
     font-weight: bold;
 }
 .nav-link:hover{
     color: var(--expRed);
 }
 .activeColor{
-    font-size: 1.2rem;
+    font-size: 0.9rem;
     color: var(--expRed);
 }
 .hero-section {
@@ -81,6 +78,14 @@ header img{
     margin: 0;
     background: linear-gradient(180deg, rgba(220,18,60,0.9) 39%, rgba(118,10,32,0.9) 71%);
     color: #e3e3e3;
+}
+.welcome-search h1{
+    font-size: 2.07rem;
+    text-align: center;
+}
+.welcome-search p{
+    font-size: 0.9rem;
+    text-align: center;
 }
 .main-categories {
     display: flex;
@@ -110,10 +115,6 @@ header img{
     transform: scale(1.05);
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8);
 }
-/* .main-category div{
-    width:100%;
-    background-color: #ffffff;
-} */
 .main-category h5{
     border:2px solid var(--expRed);
     border-radius: 0.4rem 0.4rem 0 0;
@@ -121,11 +122,16 @@ header img{
     font-weight: bolder;
     color: var(--expRed);
 }
+@media (max-width: 885px) {
+    .main-category h5{
+        font-size: 0.7rem;
+    }
+}
 .main-category p{
     color: black;
     padding: 0 0.4rem;
     width:100%;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     margin-bottom: 0.5vw;
 }
 .main-category span{
@@ -140,23 +146,15 @@ header img{
     background-color: #2ecc71; 
     color: white;
     border: none;
-    padding: 0.8vw 1.6vw;
+    padding: 0.6vw 1.2vw;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 0.8vw;
+    font-size: 0.8rem;
 }
 
 .edit-button:hover{
     background-color: var(--expRed);
 }
-/* .admin-privileges {
-    background-color: white;
-    padding: 30px;
-    margin: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}*/
 
 .subscribe-button {
     
@@ -179,9 +177,6 @@ header img{
     background-image: url('/images/image\ 17\ \(2\).png');
     background-size: cover;
     background-position: center;
-    /* padding: 30px;
-    margin: 20px;
-    border-radius: 10px;*/
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
     color: rgb(13, 12, 12); /* Ensure text is readable on the background image */
@@ -190,20 +185,13 @@ header img{
                 -4px 0 6px rgba(0, 0, 0, 0.1), /* top-left shadow */
                 4px 0 6px rgba(0, 0, 0, 0.1);
 }
+.mailheading h4{
+    font-size: 1.4rem;
+}
+.mailheading p{
+    font-size: 0.85rem;
+}
 
-
-/* .mailheading{
-    display: flex;
-    flex-direction: column;
-} */
-/* .input-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 100%;
-    max-width: 400px;
-    margin-top: 10px;
-} */
 .vertical-divider1 {
     border: none;
     border-left: 2px solid #000; /* Color and thickness of the vertical bar */
@@ -223,6 +211,7 @@ header img{
     /* padding: 5px 10px; */
     margin-right: 10px; /* Ensures the input does not overlap the button */
     background: transparent; /* Ensure text is readable on the background image */
+    font-size: 1rem;
 }
 
 .email-input:focus {
@@ -230,15 +219,15 @@ header img{
     border-bottom-color: #c0392b; /* Change color on focus */
 }
 .email-input::placeholder {
-    font-size: 0.9em; /* Adjust the size as needed */
+    font-size: 0.65em; /* Adjust the size as needed */
     color: rgba(12, 11, 11, 0.7); /* Optional: change color for better readability */
 }
 
 
 .footer {
     background-color: #f1f1f1;
-    bottom:0;
-    position: fixed;
+    /* bottom:0;
+    position: fixed; */
     padding: 3px;
     height: 25px;
     width: 100%;
@@ -247,18 +236,7 @@ header img{
     border-top: 1px solid #e3e3e3;
 }
 
-.icon1{
-    color: black;
-}
 @media (max-width: 990px) {
-    /* .admin-privileges {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    } */
-    #tax-saving{
-        font-size: 18px;
-    }
     .mailheading {
         padding-right: 0; /* Remove padding when stacked */
     }
@@ -266,10 +244,4 @@ header img{
     .vertical-divider1, .vertical-divider2{
         display: none; /* Hide the vertical divider */
     }
-    
-    /* .input-wrapper {
-        width: 100%; 
-        max-width: none;
-        margin-top: 20px;
-    } */
 }

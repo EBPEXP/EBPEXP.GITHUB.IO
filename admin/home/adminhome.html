@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/admin/home/adminhome.css">
 </head>
 <body>
-    <header class="navbar navbar-expand-lg navbar-light bg-light">
+    <header class="navbar navbar-expand-sm navbar-light bg-light">
         <a class="navbar-brand" href="/index.html"><img src="/images/logo-light.png"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -26,7 +26,7 @@
         <div class="hero-section row">
             <div class="welcome-search col d-flex justify-content-center align-items-center flex-column mt-auto mb-auto">
                 <h1>WELCOME TO HR ADMIN!</h1>
-                <h5>Click on a category below to view and edit it</h5>
+                <p>Click on a category below to view and edit it</p>
             </div>
         </div>
 
@@ -39,16 +39,16 @@
                 <h5 id="tax-saving">Tax-saving Benefits</h5>
                 <button class="edit-button">Edit / View</button>
             </a>
-            <a href="/admin/benefit_edit_view/admin_benefit_edit_view.html?id=other-benefits" class="main-category">
-                <h5>Other Benefits</h5>
+            <a href="/admin/benefit_edit_view/admin_benefit_edit_view.html?id=supplementary-benefits" class="main-category">
+                <h5>Supplementary Benefits</h5>
                 <button class="edit-button">Edit / View</button>
             </a>
         </div>
         
         <section class="admin-privileges d-flex flex-column flex-lg-row justify-content-evenly align-items-center p-3 m-4 rounded-4">
             <div class="mailheading d-flex flex-column justify-content-center align-items-center">
-                <h3>Give Admin Privilege to Others.</h3>
-                <p>Enter Experion mail id's of employees who need to have admin privileges</p>
+                <h4>Give Admin Privilege to Others.</h4>
+                <p>Enter Experion mail id of employee who need to have admin privileges</p>
                 <div class="input-wrapper d-flex justify-content-center align-items-center">
                     <input type="email" placeholder="Enter Experion mail id" class="email-input">
                     <button class="subscribe-button" id="addAdminButton" data-bs-toggle="modal" data-bs-target="#passwordModal">Add Admin</button>
@@ -111,9 +111,9 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="passwordModalLabel">Enter Password</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
-          </button>
+          </button> -->
         </div>
         <div class="modal-body">
           <p>Please enter your password for <span id="userEmail"></span> to confirm:</p>

@@ -60,7 +60,19 @@ header img{
     padding: 10px 15px;
     border-bottom: 1px solid #e3e3e3;
 }
+.nav-link {
+    color: black;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+.nav-link:hover{
+    color: var(--expRed);
+}
 
+.activeColor{
+    font-size: 0.9rem;
+    color: var(--expRed);
+}
 .form-heading {
     width: 42%;
     margin-left: 29%;
@@ -85,12 +97,9 @@ input[type="text"], input[type="file"], textarea {
     border: 1px solid #ccc;
     width: 100%;
 }
-/* .dropdown-center{
-    width: 230px;
+#editor-container{
+    height: 300px;
 }
-#dropdownButton{
-    width: 100%;
-} */
 
 .icon-container {
     display: flex;
