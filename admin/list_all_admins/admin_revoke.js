@@ -31,11 +31,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Listen for changes in authentication state
     onAuthStateChanged(auth, async (user) => {
       if (user) {
-        const currentUserUid = user.uid;
         const currentUsermail = user.email;
-
-        let spanElement = document.getElementById('currentSuperAdmin');
-        spanElement.textContent = currentUsermail;
 
         // Query for super-admin users
         const q1 = query(usersRef, where("role", "==", "super-admin"));
@@ -67,7 +63,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             buttonContainer.className = "d-flex align-end";
 
             const revokePermissionButton = document.createElement("button");
-            revokePermissionButton.className = "subscribe-button m-2 rounded";
+            revokePermissionButton.className = "m-2 rounded";
             revokePermissionButton.id = `revokePermissionButton-${docSnapshot.id}`;
             revokePermissionButton.textContent = "Revoke Permission";
 
@@ -138,12 +134,12 @@ document.addEventListener("DOMContentLoaded", async () => {
           buttonContainer.className = "d-flex align-end";
 
           const addPermissionButton = document.createElement("button");
-          addPermissionButton.className = "subscribe-button m-2 rounded";
+          addPermissionButton.className = "m-2 rounded";
           addPermissionButton.id = `addAdminButton-${docSnapshot.id}`;
           addPermissionButton.textContent = "Make Super Admin";
 
           const deleteAdminButton = document.createElement("button");
-          deleteAdminButton.className = "subscribe-button m-2 rounded";
+          deleteAdminButton.className = "m-2 rounded";
           deleteAdminButton.id = `deleteAdminButton-${docSnapshot.id}`;
           deleteAdminButton.textContent = "Revoke Permission";
 
@@ -231,12 +227,12 @@ document.addEventListener("DOMContentLoaded", async () => {
           buttonContainer.className = "d-flex align-end";
 
           const addPermissionButton = document.createElement("button");
-          addPermissionButton.className = "subscribe-button m-2 rounded";
+          addPermissionButton.className = "m-2 rounded";
           addPermissionButton.id = `addAdminButton-${docSnapshot.id}`;
           addPermissionButton.textContent = "Make Super Admin";
 
           const deleteAdminButton = document.createElement("button");
-          deleteAdminButton.className = "subscribe-button m-2 rounded";
+          deleteAdminButton.className = "m-2 rounded";
           deleteAdminButton.id = `deleteAdminButton-${docSnapshot.id}`;
           deleteAdminButton.textContent = "Revoke Permission";
 
@@ -317,7 +313,6 @@ onAuthStateChanged(auth, async (user) => {
     const userDocSnap = await getDoc(userDocRef);
 
     const email = user.email;
-    const username = email.split("@")[0].split(".")[0];
 
     if (userDocSnap.exists()) {
       const userData = userDocSnap.data();
@@ -348,49 +343,49 @@ onAuthStateChanged(auth, async (user) => {
 
     document.getElementById("greeting").textContent = `Hi ${capitalizedUsername}`;
 
-    const deleteButton = document.getElementById("deleteAdminButton");
-    if (deleteButton) {
-      // Add event listener to delete account button
-      deleteButton.addEventListener("click", async () => {
-        if (
-          confirm(
-            "Are you sure you want to delete your account? This action cannot be undone."
-          )
-        ) {
-          try {
-            const password = prompt(
-              "Please enter your password to confirm deletion:"
-            );
-            const credential = EmailAuthProvider.credential(
-              user.email,
-              password
-            );
-            await reauthenticateWithCredential(user, credential);
+    // const deleteButton = document.getElementById("deleteAdminButton");
+    // if (deleteButton) {
+    //   // Add event listener to delete account button
+    //   deleteButton.addEventListener("click", async () => {
+    //     if (
+    //       confirm(
+    //         "Are you sure you want to delete your account? This action cannot be undone."
+    //       )
+    //     ) {
+    //       try {
+    //         const password = prompt(
+    //           "Please enter your password to confirm deletion:"
+    //         );
+    //         const credential = EmailAuthProvider.credential(
+    //           user.email,
+    //           password
+    //         );
+    //         await reauthenticateWithCredential(user, credential);
 
-            await deleteUserData(user.uid);
+    //         await deleteUserData(user.uid);
 
-            await deleteUser(user);
+    //         await deleteUser(user);
 
-            await signOut(auth);
+    //         await signOut(auth);
 
-            alert("Your account has been deleted successfully.");
-            window.location.href = "/index.html";
-          } catch (error) {
-            console.error("Error deleting user:", error);
-            alert(
-              "Failed to delete user account. Please check console for details."
-            );
-          }
-        }
-      });
-    }
+    //         alert("Your account has been deleted successfully.");
+    //         window.location.href = "/index.html";
+    //       } catch (error) {
+    //         console.error("Error deleting user:", error);
+    //         alert(
+    //           "Failed to delete user account. Please check console for details."
+    //         );
+    //       }
+    //     }
+    //   });
+    // }
   } else {
     console.log("No user is signed in");
   }
 });
 
 // Function to delete user data from Firestore
-async function deleteUserData(uid) {
-  const userDocRef = doc(db, "authenticated-users", uid);
-  await deleteDoc(userDocRef);
-}
+// async function deleteUserData(uid) {
+//   const userDocRef = doc(db, "authenticated-users", uid);
+//   await deleteDoc(userDocRef);
+// }

@@ -87,12 +87,22 @@ searchInput.addEventListener('input', () => {
 
 function performSearch() {
     const query = searchInput.value.toLowerCase();
-    const result = benefits.find(benefit => benefit.name.toLowerCase() === query);
-    if (result) {
-        window.location.href = `/user/benefitDetails/benefitDetails.html?id=${result.id}`;
-    } else {
-        alert('Benefit not found.');
+    const modalBody = document.getElementsByClassName("modal-body");
+    if (query) {
+        const result = benefits.find(benefit => benefit.name.toLowerCase() === query);
+        if (result) {
+            window.location.href = `/user/benefitDetails/benefitDetails.html?id=${result.id}`;
+        } else {
+            // alert('Benefit not found.');
+            $("#exampleModal1").modal("show");
+             modalBody[0].textContent = "Benefit not found.";
+        }
     }
+    else{
+        $("#exampleModal1").modal("show");
+        modalBody[0].textContent = "Enter a valid input.";
+    }
+    
 }
 // Expose performSearch to the global scope
 window.performSearch = performSearch;

@@ -21,13 +21,45 @@ html {
     font-size: 20px;
   }
 }
+
+.loading-animation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  background: linear-gradient(
+    180deg,
+    rgba(220, 18, 60, 0.9) 39%,
+    rgba(118, 10, 32, 0.9) 71%
+  );
+  color: #fff; /* White text color */
+}
+
+.loading-text {
+  margin-bottom: 1rem; /* Space between text and spinner */
+  font-size: 1.5rem; /* Adjust size of the text */
+  animation: scaleText 1s infinite alternate; /* Scale animation */
+}
+
+@keyframes scaleText {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+.loading-animation i {
+  font-size: 3rem; /* Adjust size of the spinner icon */
+}
 body {
   font-family: Arial, sans-serif;
   background-color: #f8f9fa;
   color: #343a40;
   margin: 0;
   padding: 0;
-  /* overflow: hidden; */
   height: 100%;
 }
 
@@ -86,7 +118,6 @@ header img {
   padding: 1vw 1.6vw;
   height: fit-content;
   font-size: 1.13rem;
-  /* min-width: 160px; */
   background-color: #f8f9fa;
   border-radius: 10px;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
@@ -113,7 +144,6 @@ header img {
   text-decoration: none;
   background-color: #f8f9fa;
   border-radius: 10px;
-  /* box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4); */
 }
 .add-benefit-button h4 {
   margin: 0;
@@ -123,7 +153,7 @@ header img {
   transform: scale(1.05);
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
 }
-.edit-description h5{
+.edit-description h5 {
   font-size: 1.1rem;
 }
 .underline-div {
@@ -188,18 +218,6 @@ header img {
   .popular-benefits h5 {
     font-size: 0.6rem;
   }
-  /* .hero-section h1{
-      font-size: 1rem;
-  }
-  .hero-section a {
-      font-size: 0.5rem;
-  }
-  .headingBox, .sideHeadingBox{
-      border-radius: 5px; 
-  }
-  .sideHeadingBox{
-      min-width: 120px;
-  } */
 }
 
 .footer {

@@ -55,28 +55,11 @@ async function signIn() {
       }
       
     });
-    
-    // // Fetch the user document from Firestore
-    // const userDoc = await getDoc(doc(db, "authenticated-users", user.uid));
-    
-    // // Check if the document exists
-    // if (userData) {
-    //   const userData = userDoc.data();
-    //   console.log("User data:", userData);
       
-     
-    // } else {
-    //   alert("User document does not exist in Firestore");
-    //   // Optionally redirect to another page
-    //   // window.location.href = '/index.html';
-    // }
-  
   }
   catch (error) {
     // Handle Errors here.
-    const errorCode = error.code;
-   
- 
+    const errorCode = error.code;   
     switch (errorCode) {
       case "auth/invalid-email":
         errorMessage = "Invalid email format.";

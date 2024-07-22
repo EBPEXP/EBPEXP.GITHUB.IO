@@ -127,13 +127,19 @@ input[type="text"], input[type="file"], textarea {
     width: 100%;
 }
 .dropdown-center{
-    width: 230px;
+    width: 250px;
 }
 #dropdownButton{
     width: 100%;
 }
 #editor-container{
     height: 300px;
+}
+.ql-toolbar{
+    border-radius: 8px 8px 0 0;
+  }
+.ql-container{
+    border-radius: 0 0 8px 8px;
 }
 .icon-container {
     display: flex;

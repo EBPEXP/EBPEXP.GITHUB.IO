@@ -44,7 +44,6 @@
   }
  
   .navbar-brand {
-    /* font-size: 1.5rem; */
     color: var(--expRed);
     text-decoration: none;
     font-weight: bold;
@@ -53,7 +52,6 @@
   .nav-link {
     color: black;
     font-size: 1rem;
-    /* font-weight: bold; */
   }
   .nav-link:hover{
     color: var(--expRed);
@@ -65,7 +63,6 @@
     background-size: cover;
     background-position: left center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    /* text-align: center; */
     color: rgb(13, 12, 12); /* Ensure text is readable on the background image */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), /* bottom-right shadow */
                 0 -4px 6px rgba(0, 0, 0, 0.1), /* top-right shadow */
@@ -86,9 +83,6 @@
                 4px 0 6px rgba(0, 0, 0, 0.1);
       margin-bottom: 100px;
       background-color: white;
-      /* background-image: url('/images/image\ 17\ \(2\).png');
-      background-size: cover;
-      background-position: left center; */
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), /* bottom-right shadow */
                   0 -4px 6px rgba(0, 0, 0, 0.1), /* top-right shadow */

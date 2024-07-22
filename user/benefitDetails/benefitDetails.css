@@ -27,6 +27,7 @@ body {
   background-color: #f8f9fa;
   color: #343a40;
   padding: 0;
+  min-height: 100vh;
 }
 header {
   background-color: #f8f9fa;
@@ -65,6 +66,7 @@ header img {
 
 main {
   width: 100%;
+  flex: 1;
 }
 .leftNav {
   width: 180px;
@@ -88,7 +90,6 @@ main {
   border: 1px solid var(--expRed);
 }
 .leftNavItem {
-  /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); */
   border-radius: 5px;
   margin: 3px;
 }
@@ -118,7 +119,6 @@ main {
   margin: 0.7rem 0;
 }
 .rightContainer {
-  /* min-height: 83vh; */
   background-color: #f1f1f1;
 }
 .heading {
@@ -159,26 +159,34 @@ main {
   font-size: 0.8rem;
   margin: 0 auto;
   width: 100%;
-  padding: 0.5rem 0.8rem;
+  height: fit-content;
   background-color: white;
   border-radius: 0 0 10px 10px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+  border: none;
 }
-#benefit-content * {
-  margin-bottom: 0.3rem;
+#customMailBox{
+  display: none;
+  background-image: url('/images/image\ 17\ \(2\).png');
+  background-size: cover;
+  background-position: center;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+  background-color: white;
+  font-size: 0.8rem;
 }
-/* quill align */
-.ql-align-left {
-  text-align: left;
-}
-.ql-align-right {
-  text-align: right;
-}
-.ql-align-center {
+#customMailBox p{
+  font-size: 1rem;
   text-align: center;
 }
-.ql-align-justify {
-  text-align: justify;
+#customMail{
+  border: 2px solid var(--expRed);
+  text-decoration: none;
+  color: black;
+}
+#customMail:hover{
+  color: white;
+  background-color: var(--expRed);
+
 }
 .faq {
   font-size: 0.8rem;
@@ -223,48 +231,13 @@ main {
 .contact a {
   margin: 0;
   font-size: 0.7rem;
+  border: 2px solid rgb(178, 178, 178);
 }
 .contact p {
   background-color: var(--expRed);
   color: white;
   margin: 0;
 }
-.contact a {
-  border: 2px solid rgb(178, 178, 178);
-}
 .contact a:hover {
   border: 2px solid var(--expRed);
-}
-/* loading animation css */
-.loading-animation {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; /* Full viewport height */
-  background: linear-gradient(
-    180deg,
-    rgba(220, 18, 60, 0.9) 39%,
-    rgba(118, 10, 32, 0.9) 71%
-  );
-  color: #fff; /* White text color */
-}
-
-.loading-text {
-  margin-bottom: 1rem; /* Space between text and spinner */
-  font-size: 1.5rem; /* Adjust size of the text */
-  animation: scaleText 1s infinite alternate; /* Scale animation */
-}
-
-@keyframes scaleText {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.1);
-  }
-}
-
-.loading-animation i {
-  font-size: 3rem; /* Adjust size of the spinner icon */
 }

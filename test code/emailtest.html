@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Formatter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Enter Email Content</h2>
+        <textarea id="emailBody" class="form-control" rows="10" placeholder="Enter your email content here..."></textarea>
+        <a href="#" id="customMail" class="p-1 rounded">
+            Send Mail <i class="fa-solid fa-paper-plane"></i>
+        </a>
+    </div>
+
+    <script>
+        document.getElementById('customMail').addEventListener('click', function(event) {
+            const emailBody = document.getElementById('emailBody').value;
+            const encodedBody = encodeURIComponent(emailBody).replace(/%0A/g, '%0D%0A');
+            const mailtoLink = `mailto:ajinkjajin@gmail.com?cc=ajin@gmail.com&subject=I have a query on tyax&body=${encodedBody}`;
+            this.href = mailtoLink;
+        });
+    </script>
+</body>
+</html>

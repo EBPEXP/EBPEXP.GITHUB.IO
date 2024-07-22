@@ -13,16 +13,17 @@
     <link rel="stylesheet" href="/admin/login/login.css" />
   </head>
   <body>
-    <div class="container">
       <div
-        class="login-container d-flex flex-column flex-md-row justify-content-around align-items-center p-5"
+        class="container login-container d-flex flex-column flex-md-row justify-content-around align-items-center p-3 p-md-4 p-lg-5"
       >
-        <div class="login-logo offset-md-2 w-100 w-md-50 align-items-center">
-          <div class="text-experion">experion</div>
-          <div class="text-technologies">technologies</div>
-          <div class="angled-rectangle"></div>
+        <div class="login-logo w-100 w-md-50 justify-content-center align-items-center p-4 p-md-5">
+          <div id="logo">
+            <div class="text-experion">experion</div>
+            <div class="text-technologies">technologies</div>
+            <div class="angled-rectangle"></div>
+          </div>
         </div>
-        <div class="login-box w-100 w-md-50">
+        <div class="login-box w-100 w-md-50 p-3 p-md-4 p-lg-5">
           <h2>Sign in</h2>
           <form id="loginForm">
             <div id="error-message" class="text-danger"></div>
@@ -44,18 +45,17 @@
                 required
               />
             </div>
-            <div class="p-2 d-flex justify-content-center align-items-center">
+            <div class="p-3 d-flex justify-content-center align-items-center">
               <button type="submit" id="signInButton" class="btn btn-dark btn-block">
                 Sign In
               </button>
             </div>
-            <div class="forgot-password d-flex justify-content-center align-items-center p-3">
+            <div class="forgot-password d-flex justify-content-center align-items-center">
               <a href="#" id="forgotPasswordLink">Forgot password?</a>
             </div>
           </form>
         </div>
       </div>
-    </div>
     <script type="module" src="/firebase/firebaseConfig.js"></script>
     <script type="module" src="/admin/login/auth.js"></script>
   </body>

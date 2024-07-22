@@ -3,6 +3,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
+  onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 import {
   doc,
@@ -42,7 +43,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     .getElementById("saveChangesButton")
     .addEventListener("click", function () {
       var email = document.getElementById("email").value;
-      var phone = document.getElementById("phone").value;
+      var teamsCall = document.getElementById("teamsCall").value;
       var teamsMail = document.getElementById("teamsMail").value;
 
       if (hrContactDetails.length === 0) {
@@ -58,7 +59,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       // Update the document
       setDoc(docRef, {
         email: email,
-        contactnumber: phone,
+        teamsCall: teamsCall,
         teamsmail: teamsMail,
       })
         .then(() => {
@@ -214,7 +215,7 @@ function preFillModal() {
   const hrContactDetail = hrContactDetails[0]; // Assuming there's only one document
 
   document.getElementById("email").value = hrContactDetail.email || "";
-  document.getElementById("phone").value = hrContactDetail.contactnumber || "";
+  document.getElementById("teamsCall").value = hrContactDetail.teamsCall || "";
   document.getElementById("teamsMail").value = hrContactDetail.teamsmail || "";
 }
 
@@ -227,5 +228,20 @@ function openPasswordModal() {
   }
 }
 
+function displayUsername(){
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      const email = user.email;
+      const username = email.split("@")[0].split(".")[0];
+      const capitalizedUsername =
+      username.charAt(0).toUpperCase() + username.slice(1);
+  
+      document.getElementById("adminUserName").textContent = `Admin (${capitalizedUsername})`;
+    } else {
+      console.log("No user is signed in");
+    }
+  });
+}
 
+displayUsername();
 

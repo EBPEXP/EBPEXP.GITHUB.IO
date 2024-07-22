@@ -1,5 +1,8 @@
-import { db } from '/firebase/firebaseConfig.js';
+import { auth, db } from '/firebase/firebaseConfig.js';
 import { collection, query, where, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
+import {
+    onAuthStateChanged,
+  } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
     const params = new URLSearchParams(window.location.search);
@@ -64,3 +67,19 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 });
+
+function displayUsername(){
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const email = user.email;
+        const username = email.split("@")[0].split(".")[0];
+        const capitalizedUsername =
+        username.charAt(0).toUpperCase() + username.slice(1);
+    
+        document.getElementById("adminUserName").textContent = `Admin (${capitalizedUsername})`;
+      } else {
+        console.log("No user is signed in");
+      }
+    });
+  }
+   displayUsername();
