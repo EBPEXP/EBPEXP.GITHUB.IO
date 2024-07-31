@@ -1,3 +1,6 @@
+:root {
+  --expRed: #dc143c;
+}
 body {
   background-color: #f2f2f2;
   display: flex;
@@ -31,30 +34,21 @@ html {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
 }
-
+.login-logo a{
+  margin: 0 auto;
+}
+.login-logo img{
+  width: 138px;
+}
 .angled-rectangle {
   width: 9.5em;
-  height: 9em;
-  background-color: #dc123c;
-  clip-path: polygon(0% 100%, 100% 60%, 100% 0%, 0% 0%);
-  margin-top: 1em;
+  height: 9.5em;
+  background-color: var(--expRed);
+  clip-path: polygon(0% 100%, 100% 62.5%, 100% 0%, 0% 0%);
+  margin: 1em auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 } 
-#logo{
-  margin: 0 auto;
-  width: 9.5em;
-}
-.text-experion {
-  font-size: 2.5em;
-}
-.text-technologies {
-  position: absolute;
-  margin-top: -1em;
-  margin-left: 3.8rem;
-  font-size: 1em;
-}
 .login-box {
-  /* width: 50%; */
   background-color: #e0e0e0;
   border-radius: 8px;
 }

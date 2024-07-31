@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     deleteFunctionToButtons();
     addFaqs();
     addEmailDetails();
+    document.getElementById("addLinkBtn").addEventListener('click',addLinks);
 });
 
 async function imageHandler() {
@@ -66,8 +67,18 @@ async function imageHandler() {
         }
     };
 }
-
-document.getElementById('benefit-form').addEventListener('submit', async function (event) {
+const form = document.getElementById('benefit-form');
+//to prevent form submission when enter key pressed in input field
+const inputs = form.getElementsByTagName('input');
+console.log(inputs);
+for (let i = 0; i < inputs.length; i++) {
+    inputs[i].addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Prevent the default form submission
+        }
+    });
+}
+form.addEventListener('submit', async function (event) {
     event.preventDefault();
     const benefitName = document.getElementById('benefit-name').value;
     const icon = document.getElementById('icon-search').value;
@@ -95,6 +106,14 @@ document.getElementById('benefit-form').addEventListener('submit', async functio
     // Collect email details
     let emailDetails = collectEmailDetailsFromForm();
 
+    // Collect links
+    const links = [];
+    document.querySelectorAll('.link').forEach((linkElement) => {
+        const name = linkElement.querySelector('input[name="name"]').value;
+        const link = linkElement.querySelector('input[name="link"]').value;
+        links.push({name: name, link: link});
+    });
+
     // Get the highest current benefit ID
     const benefitsCollection = collection(db, 'benefits');
     const q = query(benefitsCollection, orderBy('id', 'desc'), limit(1));
@@ -115,6 +134,7 @@ document.getElementById('benefit-form').addEventListener('submit', async functio
         content: content,
         faqs: faqs,
         emails: emailDetails,
+        links: links,
         categoryId: categoryId,
         views: 0
     };
@@ -134,10 +154,10 @@ document.getElementById('benefit-form').addEventListener('submit', async functio
 });
 
 // To add delete function to FAQs
-function deleteFunctionToButtons() {
-    document.querySelectorAll('.remove-faq').forEach((button) => {
+function deleteFunctionToButtons(button, toRemove) {
+    document.querySelectorAll(button).forEach((button) => {
         button.addEventListener('click', function (event) {
-            event.target.closest(".faq").remove();
+            event.target.closest(toRemove).remove();
         });
     });
 }
@@ -148,7 +168,7 @@ function addFaqs() {
     const faqContainer = document.getElementById("faqs-container")
     addFaqButton.addEventListener("click",()=>{
         faqCount++;
-        let newFaq = `<div class="faq border border-danger p-3 rounded-2 mb-2">
+        let newFaq = `<div class="faq border border-danger p-3 rounded-2 mb-3">
                         <div class="mb-3 row">
                             <label class="col-sm-2">Question:</label>
                             <div class="col-sm-10">
@@ -182,7 +202,7 @@ function addFaqs() {
               placeholder: 'Answer here...',
             theme: 'snow'
         });
-        deleteFunctionToButtons();
+        deleteFunctionToButtons(".remove-faq", ".faq");
     })
 }
 
@@ -216,6 +236,28 @@ function deleteFunctionToEmailContainer() {
         document.getElementById("emailDetailsContainer").remove();
         addEmailDetailsBtn.style.display = "flex";
     })
+}
+
+// To add Links 
+function addLinks() {
+    const supportLinkContainer = document.getElementById("supportLinkContainer")
+    let newLink = `<div class="link border border-danger p-3 rounded-2 mb-3">
+                        <div class="mb-3 row">
+                            <label class="col-sm-2">Link name:</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="name" class="form-control" required placeholder="Add text to be displayed for link...">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-sm-2">Link:</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="link" class="form-control" required placeholder="Add link here...">
+                            </div>
+                        </div>
+                        <button type="button" class="remove-link btn btn-outline-danger">Remove Link</button>
+                    </div>`
+    supportLinkContainer.insertAdjacentHTML("beforeend", newLink);
+    deleteFunctionToButtons(".remove-link", ".link");
 }
 
 function collectEmailDetailsFromForm() {

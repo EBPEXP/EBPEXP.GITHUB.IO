@@ -124,38 +124,57 @@ function displayBenefitDetails(benefitId) {
       const encodedBody = encodeURIComponent(benefit.emails[0].content).replace(/%0A/g, '%0D%0A');
       document.getElementById("customMail").setAttribute("href","mailto:"+benefit.emails[0].to+"?cc="+benefit.emails[0].cc+"&subject="+benefit.emails[0].subject+"&body="+encodedBody);
     }
-    // Clear and populate FAQs
-    faqContainer.innerHTML = "";
-    benefit.faqs.forEach((faq, index) => {
-      faqCount++;
-      const faqItem = document.createElement("div");
-      faqItem.classList.add("accordion-item");
-      faqItem.innerHTML = `
-                <h2 class="accordion-header" id="heading${index}">
-                    <button class="accordion-button collapsed p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${index}" aria-expanded="false" aria-controls="collapse${index}">
-                        ${faq.question}
-                    </button>
-                </h2>
-                <div id="collapse${index}" class="accordion-collapse collapse m-0" aria-labelledby="heading${index}" data-bs-parent="#accordionContainer">
-                    <div class="accordion-body p-0">
-                    <div id="faqQuill${faqCount}" name="faq-answer"></div>
-                    </div>
-                </div>
-            `;
-      faqContainer.appendChild(faqItem);
-      let faqQuillId = `#faqQuill${faqCount}`
-      const options = {
-        readOnly: true,
-        modules: {
-          toolbar: null
-        },
-        theme: 'snow'
-      };
-      faqQuillId = new Quill(faqQuillId, options);
-      faqQuillId.root.innerHTML=faq.answer;
-    });
-    if (document.getElementById("collapse0")) {
-      document.getElementById("collapse0").classList.add("show");
+
+    if(benefit.links[0]){
+      const supportLinksContainer = document.getElementById("supportLinksContainer");
+      supportLinksContainer.style.display = 'flex';
+      const supportLinks = document.getElementById("supportLinks");
+      // Clear and populate links
+      supportLinks.innerHTML = "";
+      benefit.links.forEach(link => {
+        const linkBtn = document.createElement("a");
+        linkBtn.setAttribute("href",link.link);
+        linkBtn.setAttribute("target","_blank");
+        linkBtn.innerText = link.name;
+        supportLinks.appendChild(linkBtn);
+      })
+    }
+
+    if(benefit.faqs[0]){
+      document.getElementById("faq").style.display = 'block';
+      // Clear and populate FAQs
+      faqContainer.innerHTML = "";
+      benefit.faqs.forEach((faq, index) => {
+        faqCount++;
+        const faqItem = document.createElement("div");
+        faqItem.classList.add("accordion-item");
+        faqItem.innerHTML = `
+                  <h2 class="accordion-header" id="heading${index}">
+                      <button class="accordion-button collapsed p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${index}" aria-expanded="false" aria-controls="collapse${index}">
+                          ${faq.question}
+                      </button>
+                  </h2>
+                  <div id="collapse${index}" class="accordion-collapse collapse m-0" aria-labelledby="heading${index}" data-bs-parent="#accordionContainer">
+                      <div class="accordion-body p-0">
+                      <div id="faqQuill${faqCount}" name="faq-answer"></div>
+                      </div>
+                  </div>
+              `;
+        faqContainer.appendChild(faqItem);
+        let faqQuillId = `#faqQuill${faqCount}`
+        const options = {
+          readOnly: true,
+          modules: {
+            toolbar: null
+          },
+          theme: 'snow'
+        };
+        faqQuillId = new Quill(faqQuillId, options);
+        faqQuillId.root.innerHTML=faq.answer;
+      });
+      if (document.getElementById("collapse0")) {
+        document.getElementById("collapse0").classList.add("show");
+      }
     }
   }
 }

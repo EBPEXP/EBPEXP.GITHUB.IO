@@ -89,14 +89,26 @@ document.addEventListener("DOMContentLoaded", async () => {
   iconSearchFunction();
   if (benefitData.faqs) {
     showFaqs(benefitData);
-    deleteFunctionToButtons();
   }
   if(benefitData.emails){
     showEmail(benefitData);
   }
+  if (benefitData.links) {
+    showLinks(benefitData);
+  }
   addFaqs();
   addEmailDetails();
+  document.getElementById("addLinkBtn").addEventListener('click',addLinks);
   dropdownFunctions();
+  //to prevent form submission when enter key pressed in input field
+  const inputs = form.getElementsByTagName('input');
+  for (let i = 0; i < inputs.length; i++) {
+      inputs[i].addEventListener('keypress', function(event) {
+          if (event.key === 'Enter') {
+              event.preventDefault(); // Prevent the default form submission
+          }
+      });
+  }
   form.addEventListener("submit", submitEdits);
 });
 
@@ -143,12 +155,13 @@ function showFaqs(benefitData) {
         });
         faqQuillId.root.innerHTML=items.answer;
   });
+  deleteFunctionToButtons(".remove-faq", ".faq");
 }
-//apply delete functionality to delete faq button
-function deleteFunctionToButtons() {
-  document.querySelectorAll(".remove-faq").forEach((button) => {
+//apply delete functionality to remove-faq button & remove-link button
+function deleteFunctionToButtons(button, toRemove) {
+  document.querySelectorAll(button).forEach((button) => {
     button.addEventListener("click", function (event) {
-      event.target.closest(".faq").remove();
+      event.target.closest(toRemove).remove();
     });
   });
 }
@@ -173,6 +186,29 @@ function showEmail(benefitData) {
     emailsContainer.insertAdjacentHTML("beforeend", newEmailDetails);
     deleteFunctionToEmailContainer();
   };
+}
+function showLinks(benefitData) {
+  const supportLinkContainer = document.getElementById("supportLinkContainer");
+  let linkHtmlData = "";
+  benefitData.links.forEach((item) => {
+    linkHtmlData = `<div class="link border border-danger p-3 rounded-2 mb-3">
+                      <div class="mb-3 row">
+                          <label class="col-sm-2">Link name:</label>
+                          <div class="col-sm-10">
+                              <input type="text" name="name" class="form-control" required placeholder="Add text to be displayed for link..." value="${item.name}">
+                          </div>
+                      </div>
+                      <div class="mb-3 row">
+                          <label class="col-sm-2">Link:</label>
+                          <div class="col-sm-10">
+                              <input type="text" name="link" class="form-control" required placeholder="Add link here..." value="${item.link}">
+                          </div>
+                      </div>
+                      <button type="button" class="remove-link btn btn-outline-danger">Remove Link</button>
+                  </div>`
+    supportLinkContainer.insertAdjacentHTML("beforeend", linkHtmlData);
+  })
+  deleteFunctionToButtons(".remove-link",".link");
 }
 //to add faqs
 function addFaqs() {
@@ -206,7 +242,7 @@ function addFaqs() {
           placeholder: 'Answer here...',
         theme: 'snow'
     });
-    deleteFunctionToButtons();
+    deleteFunctionToButtons(".remove-faq", ".faq");
   });
 }
 
@@ -239,6 +275,28 @@ function deleteFunctionToEmailContainer(){
     document.getElementById("emailDetailsContainer").remove();
     addEmailDetailsBtn.style.display = "flex";
   })
+}
+
+// To add Links 
+function addLinks() {
+  const supportLinkContainer = document.getElementById("supportLinkContainer")
+  let newLink = `<div class="link border border-danger p-3 rounded-2 mb-3">
+                      <div class="mb-3 row">
+                          <label class="col-sm-2">Link name:</label>
+                          <div class="col-sm-10">
+                              <input type="text" name="name" class="form-control" required placeholder="Add text to be displayed for link...">
+                          </div>
+                      </div>
+                      <div class="mb-3 row">
+                          <label class="col-sm-2">Link:</label>
+                          <div class="col-sm-10">
+                              <input type="text" name="link" class="form-control" required placeholder="Add link here...">
+                          </div>
+                      </div>
+                      <button type="button" class="remove-link btn btn-outline-danger">Remove Link</button>
+                  </div>`
+  supportLinkContainer.insertAdjacentHTML("beforeend", newLink);
+  deleteFunctionToButtons(".remove-link", ".link");
 }
 
 //to search icons
@@ -290,6 +348,7 @@ async function submitEdits(event) {
   event.preventDefault();
   let faqArray = pushFaqToDb();
   let emailDetails = collectEmailDetailsFromForm();
+  let linkArray = pushLinkToDb();
   const modalHeading = document.getElementById("exampleModal1Label");
   const modalBody = document.getElementsByClassName("modal-body");
   const goBackBtn = document.getElementById("modalGoLastPage");
@@ -317,6 +376,7 @@ async function submitEdits(event) {
           categoryId: document.getElementById("dropdownButton").textContent,
           faqs: faqArray,
           emails: emailDetails,
+          links: linkArray
         },
         { merge: true }
       ); // Use merge option to merge new data with existing document
@@ -359,6 +419,21 @@ function collectEmailDetailsFromForm(){
     emailDetails.push({to, cc, subject, content});
   };
   return emailDetails;
+}
+//function to add faq data into the object to be updated into database
+function pushLinkToDb() {
+  let linkArray = [];
+  const linkElements = document.querySelectorAll(".link");
+  linkElements.forEach((linkElement) => {
+    const name = linkElement.querySelector(
+      'input[name="name"]'
+    ).value;
+    const link = linkElement.querySelector(
+      'input[name="link"]'
+    ).value;
+    linkArray.push({ name, link });
+  });
+  return linkArray;
 }
 
 function displayUsername(){
