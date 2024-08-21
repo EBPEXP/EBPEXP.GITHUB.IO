@@ -1,5 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 :root {
-  --expRed: #dc143c;
+  --expRed: #8061c3;
 }
 html {
   font-size: 16px; /* Base font size */
@@ -22,7 +23,7 @@ html {
   }
 }
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: #f8f9fa;
   color: #343a40;
   margin: 0;
@@ -47,11 +48,12 @@ header img {
   justify-content: center;
   align-items: center;
   height: 100vh; /* Full viewport height */
-  background: linear-gradient(
+  background-color: var(--expRed);
+  /* background: linear-gradient(
     180deg,
     rgba(220, 18, 60, 0.9) 39%,
     rgba(118, 10, 32, 0.9) 71%
-  );
+  ); */
   color: #fff; /* White text color */
 }
 
@@ -103,6 +105,9 @@ header img {
   padding: 1vw 1.6vw;
   height: fit-content;
   /* min-width: 160px; */
+  font-size: clamp(0.8rem, 3vw, 1.2rem);
+  line-height: 1.25em;
+  min-width: 27%;
   background-color: #f8f9fa;
   border-radius: 10px;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
@@ -113,11 +118,12 @@ header img {
 
 .hero-section h1 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: clamp(0.9rem,3vw,1.2rem);
+  font-weight: 600;
   text-align: center;
 }
 .sideHeadingBox:hover {
-  transform: scale(1.2);
+  transform: scale(1.12);
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
   background-color: #f8f9fa;
 }
@@ -125,7 +131,7 @@ header img {
 .benefit-card {
   background-color: #f1f1f1;
   padding: 10%;
-  width: 150px;
+  width: 100px;
   height: 100px;
   display: flex;
   justify-content: center;
@@ -155,9 +161,9 @@ header img {
 }
 
 .popular-benefits h5 {
-  margin: 0;
-  font-size: 0.8rem;
-  font-weight: 550;
+  margin: 0.4rem 0 0 0;
+  font-size: 0.6rem;
+  font-weight: 600;
 }
 
 .popular-benefits i {
@@ -166,12 +172,13 @@ header img {
   color: var(--expRed);
 }
 
-@media (max-width: 720px) {
+@media (min-width: 768px) {
   .benefit-card {
-    width: 100px;
+    width: 150px;
+    height: 120px;
   }
   .popular-benefits h5 {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
   }
 }
 

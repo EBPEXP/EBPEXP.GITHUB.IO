@@ -23,7 +23,7 @@
   }
  
   body{
-      max-height: 1px;
+      /* max-height: 1px; */
       background: linear-gradient(180deg, rgba(220,18,60,0.9) 39%, rgba(118,10,32,0.9) 71%);
   }
  
@@ -95,10 +95,8 @@
  
   .footer {
     background-color: #f1f1f1;
-    bottom:0;
-    position: fixed;
     padding: 3px;
-    height: 4%;
+    height: 25px;
     width: 100%;
     font-size: 0.65rem;
     text-align: center;

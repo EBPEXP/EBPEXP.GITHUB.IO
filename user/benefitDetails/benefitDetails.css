@@ -1,5 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 :root {
-  --expRed: #dc123c;
+  --expRed: #8061c3;
 }
 html {
   font-size: 16px; /* Base font size */
@@ -23,7 +24,7 @@ html {
 }
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: #f8f9fa;
   color: #343a40;
   padding: 0;
@@ -91,8 +92,8 @@ main {
   padding: 0.3rem 0.1rem;
   text-align: center;
   color: black;
-  font-size: 0.6rem;
-  border: 1.35px solid black;
+  font-size: 0.7rem;
+  border: 1px solid black;
 }
 .leftNavLink:hover {
   background-color: var(--expRed);
@@ -157,6 +158,9 @@ main {
   border-radius: 0 0 10px 10px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
   border: none;
+}
+.ql-editor {
+  font-family: 'Poppins', sans-serif;
 }
 #supportLinks a{
   border-radius: 5px;
@@ -248,4 +252,8 @@ main {
 }
 .contact a:hover {
   border: 2px solid var(--expRed);
+}
+#teamsMessage{
+  background-color: var(--expRed);
+  color: white;
 }

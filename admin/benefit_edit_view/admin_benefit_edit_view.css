@@ -105,7 +105,9 @@ header img {
   margin: 5px;
   padding: 1vw 1.6vw;
   height: fit-content;
-  font-size: 1.13rem;
+  font-size: clamp(0.8rem, 3vw, 1.2rem);
+  line-height: 1.25em;
+  min-width: 27%;
   background-color: #f8f9fa;
   border-radius: 10px;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
@@ -116,7 +118,8 @@ header img {
 
 .hero-section h1 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: clamp(0.9rem, 3vw, 1.2rem);
+  font-weight: bold;
   text-align: center;
 }
 .sideHeadingBox:hover {
@@ -188,9 +191,9 @@ header img {
 }
 
 .popular-benefits h5 {
-  margin: 0;
-  font-size: 0.8rem;
-  font-weight: 550;
+  margin: 0.4rem 0 0 0;
+  font-size: 0.7rem;
+  font-weight: 600;
 }
 
 .popular-benefits i {
