@@ -26,28 +26,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-//download feature
-const downloadButton = document.getElementById("downloadButton");
-downloadButton.addEventListener("click", function () {
-  downloadButton.style.display = "none";
-  const benefitName = getBenefitById(benefits, benefitId).name;
-  var opt = {
-    margin: 0.3, // Margin around the content in inches
-    filename: `${benefitName}.pdf`, // Name of the generated PDF file
-    image: { type: "jpeg", quality: 0.98 }, // Image settings for the PDF
-    html2canvas: { scale: 4 }, // Scaling factor for html2canvas to improve quality
-    jsPDF: { unit: "in", format: "a4", orientation: "portrait" }, // PDF settings
-  };
-  var element = document.getElementById("div2Pdf");
-  html2pdf()
-    .from(element)
-    .set(opt)
-    .save()
-    .then(function () {
-      downloadButton.style.display = "block";
-    });
-});
-
 // Function to get the benefit ID from the URL
 function getBenefitIdFromURL() {
   const params = new URLSearchParams(window.location.search);
@@ -67,6 +45,7 @@ function getCategoryById(categories, categoryId) {
 
 //Populate nav banner
 function populateNavbanner(benefitId) {
+  console.log(benefitId);
   const benefit = getBenefitById(benefits, benefitId);
   const category = getCategoryById(categories, benefit.categoryId);
   if (category) {
@@ -181,10 +160,10 @@ function displayBenefitDetails(benefitId) {
 
 //function to populate hr contact details
 function populateHRdetails(benefitId){
-  const teamsCall = document.getElementById("teamsCall");
+  // const teamsCall = document.getElementById("teamsCall");
   const email = document.getElementById("email");
   const teamsMessage = document.getElementById("teamsMessage");
-  teamsCall.parentElement.setAttribute("href","https://teams.microsoft.com/l/call/0/0?users="+hrContactDetails[0].teamsCall);
+  // teamsCall.parentElement.setAttribute("href","https://teams.microsoft.com/l/call/0/0?users="+hrContactDetails[0].teamsCall);
   email.textContent= hrContactDetails[0].email;
   const benefitName = getBenefitById(benefits, benefitId).name;
   email.parentElement.setAttribute(

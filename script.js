@@ -11,9 +11,15 @@ window.onload = async () => {
 
     // Hide loading animation after everything is loaded
     loadingAnimation.style.display = 'none';
+    document.getElementById("body").style.display = 'block';
 
     // Initialize benefits display after hiding loading animation
-    initBenefitsDisplay(benefits);
+    // initBenefitsDisplay(benefits);
+
+    //Load benefits function : loadBenefits(category Id, html Container)
+    loadBenefits("statutory-benefits", "statuatoryBenefits");
+    loadBenefits("tax-saving-benefits", "taxSavingBenefits");
+    loadBenefits("supplementary-benefits", "supplementaryBenefits");
 };
 
 // Function to sort benefits by views in descending order
@@ -106,3 +112,20 @@ function performSearch() {
 }
 // Expose performSearch to the global scope
 window.performSearch = performSearch;
+
+//Load benefits funtion
+function loadBenefits(categoryId, container){
+    let benefitByCategory = benefits.filter((item) => item.categoryId == categoryId);
+    let sortedBenefits = benefitByCategory.sort((a, b) => b.views - a.views);
+    sortedBenefits.forEach((item) => {
+        // Create a temporary div to hold the HTML string
+        let listItem = document.createElement('li');
+        listItem.innerHTML = `
+            <a href="/user/benefitDetails/benefitDetails.html?id=${item.id}">
+                ${item.name}
+            </a>`;
+        //<i class="fas ${item.icon} fa-2x"></i>
+        // Append the new HTML element to the target container
+        document.getElementById(container).appendChild(listItem);
+    })
+}

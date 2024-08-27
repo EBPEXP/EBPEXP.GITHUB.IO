@@ -27,7 +27,7 @@
     </header>
 
     <main class="d-flex">
-      <div class="navbar navbar-expand-md p-0 align-items-start justify-content-center" style="display: unset;">
+      <div class="leftContainer navbar navbar-expand-md p-0 align-items-start justify-content-center" style="display: unset;">
         <button class="navbar-toggler p-0 m-1" type="button" data-bs-toggle="collapse" data-bs-target="#leftNav" aria-controls="leftNav"
             aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -49,26 +49,15 @@
         <div id="div2Pdf" class="col-12 col-lg-8 p-3">
           <div class="heading d-flex">
               <h1 id="benefit-title">_ _ _ _ _ _ _</h1>
-              <button id="downloadButton" title="Download as pdf">
-                <i class="fa-solid fa-download"></i>
-              </button>
           </div>
           <p class="description mt-3 mb-0" id="description">_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ </p>
           <!-- Div to display the benefit details -->
           <div id="benefit-content"></div>
-          <div id="customMailBox" class="mt-3 p-3 rounded flex-column justify-content-center align-items-center">
+          <div id="customMailBox" class="mt-3 p-3 flex-column justify-content-center align-items-center">
             <p>Avail the benefit by sending a quick mail to the HR</p>
             <a href="mailto:" id="customMail" class="p-1 rounded">Send Mail <i class="fa-solid fa-paper-plane"></i></a>
           </div>
-          <div id="supportLinksContainer" class="mt-3 p-3 rounded flex-column justify-content-center align-items-center">
-            <p>Supporting documents</p>
-            <div id="supportLinks" class="d-flex flex-wrap justify-content-center">
-
-            </div>
-          </div>
-        </div>
-        <div class="faq-contact col-12 col-lg-4 bg-light d-flex flex-column flex-md-row flex-lg-column p-0">
-          <div id="faq" class="faq col-12 col-md-7 col-lg-12 p-3">
+          <div id="faq" class="faq pt-3">
             <h5>FAQs</h5>
             <div class="accordion" id="accordionContainer">
               <div class="accordion-item">
@@ -109,18 +98,28 @@
               </div>
             </div>
           </div>
-          <div class="contactHR col-12 col-md-5 col-lg-12 p-3 d-flex align-items-center">
-            <div class="contact w-100 d-flex flex-column justify-content-center align-items-center rounded">
-              <p class="text-center rounded-top w-100 py-2">Still your query not yet solved, contact:</p>
-              <a href="callto:" class="mt-2 text-decoration-none text-body p-1 rounded">
+          
+        </div>
+        <div class="faq-contact col-12 col-lg-4 bg-light d-flex flex-column p-0">
+          <div id="supportLinksContainer" class="m-3 flex-column justify-content-center align-items-center">
+            <p class="text-center p-2 m-0">Supporting documents</p>
+            <div id="supportLinks" class="d-flex flex-wrap justify-content-center p-2">
+
+            </div>
+          </div>
+
+          <div class="contactHR p-3 d-flex align-items-center">
+            <div class="contact w-100 d-flex flex-column justify-content-center align-items-center">
+              <p class="text-center w-100 py-2">Still your query not yet solved, contact:</p>
+              <!-- <a href="callto:" class="mt-2 text-decoration-none text-body p-1 rounded">
                 <i class="fa-solid fa-phone fa-lg me-1"></i>
                 <span id="teamsCall" class="text-decoration-none">Connect with HR</span>
-              </a>
-              <a href="mailto:" class="mt-2 text-decoration-none text-body p-1 rounded">
+              </a> -->
+              <a href="mailto:" class="mt-3 text-decoration-none text-body p-1 rounded">
                 <i class="fa-solid fa-envelope fa-lg"></i>
                 <span id="email"></span>
               </a>
-              <div class="d-flex">
+              <div class="d-flex p-2">
                 <h6 class="mb-0 pb-0"></h6>
                 <a id="teamsMessage" class="my-2 btn" href="https://teams.microsoft.com/l/chat/0/0?users=user@example.com&message=Hello,%20how%20are%20you?"target="_blank">
                   Chat with HR <i class="fa-solid fa-paper-plane"></i>
@@ -139,7 +138,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js" integrity="sha512-MpDFIChbcXl2QgipQrt1VcPHMldRILetapBl5MPCA9Y8r7qvlwx1/Mc9hNTzY+kS5kX6PdoDq41ws1HiVNLdZA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
     <script type="module" src="/user/benefitDetails/benefitDetails.js"></script>
     

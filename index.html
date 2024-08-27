@@ -42,74 +42,39 @@
         <p class="loading-text">Employee Benefits Portal</p>
         <i class="fas fa-spinner fa-pulse"></i>
     </div>
-        <div class="hero-section d-flex flex-column flex-sm-row justify-content-evenly gap-3">
-            <div class="welcome-search d-flex flex-column justify-content-center align-items-center gap-1 mt-auto mb-auto w-100 w-sm-50 p-2">
-                <h1>Welcome to Your Benefits Portal</h1>
-                <p>Discover your benefits and learn how to avail them.</p>
-                <div class="search-bar">
-                    <div class="search-input-container">
-                        <input type="text" id="benefit-search" placeholder="Search for a benefit...">
-                        <button onclick="performSearch()">
-                            Search
-                            <!-- <i class="fa-solid fa-magnifying-glass fa-xl"></i> -->
-                        </button>
+        <section id="body">
+            <div class="hero-section d-flex flex-column flex-sm-row justify-content-evenly gap-3">
+                <div class="welcome-search d-flex flex-column justify-content-center align-items-center gap-1 mt-auto mb-auto w-100 w-sm-50 p-2 p-md-4">
+                    <h1>Welcome to Your Benefits Portal</h1>
+                    <p>Discover your benefits and learn how to avail them.</p>
+                    <div class="search-bar">
+                        <div class="search-input-container">
+                            <input type="text" id="benefit-search" placeholder="Search for a benefit...">
+                            <button onclick="performSearch()">
+                                Search
+                                <!-- <i class="fa-solid fa-magnifying-glass fa-xl"></i> -->
+                            </button>
+                        </div>
+                        <div id="recommendations" class="recommendations"></div>
                     </div>
-                    <div id="recommendations" class="recommendations"></div>
                 </div>
             </div>
-            <div class="popular-benefits w-100 w-sm-50 p-0 p-md-1 gap-1 gap-lg-2">
-                <a href="" class="benefit-card py-2 py-xl-3 px-0 px-md-1">
-                    <i class="fas fa-piggy-bank icon"></i>
-                    <h5></h5>
+
+            <div class="main-categories d-flex flex-column flex-sm-row justify-content-evenly p-3 gap-3 mb-1">
+                <a class="main-category">
+                    <h5>Statutory Benefits</h5>
+                    <ul id="statuatoryBenefits"></ul>
                 </a>
-                <a href="" class="benefit-card py-2 py-xl-3 px-0 px-md-1">
-                    <i class="fas fa-briefcase-medical icon"></i>
-                    <h5></h5>
+                <a class="main-category">
+                    <h5>Tax-saving Benefits</h5>
+                    <ul id="taxSavingBenefits"></ul>
                 </a>
-                <a href="" class="benefit-card py-2 py-xl-3 px-0 px-md-1">
-                    <i class="fas fa-plane icon"></i>
-                    <h5></h5>
-                </a>
-                <a href="" class="benefit-card py-2 py-xl-3 px-0 px-md-1">
-                    <i class="fas fa-mobile-alt icon"></i>
-                    <h5></h5>
-                </a>
-                <a href="" class="benefit-card py-2 py-xl-3 px-0 px-md-1">
-                    <i class="fas fa-heartbeat icon"></i>
-                    <h5></h5>
-                </a>
-                <a href="" class="benefit-card py-2 py-xl-3 px-0 px-md-1">
-                    <i class="fas fa-user-shield icon"></i>
-                    <h5></h5>
-                </a>
-                <a href="" class="benefit-card py-2 py-xl-3 px-0 px-md-1">
-                    <i class="fas fa-umbrella-beach icon"></i>
-                    <h5></h5>
-                </a>
-                <a href="" class="benefit-card py-2 py-xl-3 px-0 px-md-1">
-                    <i class="fas fa-piggy-bank icon"></i>
-                    <h5></h5>
+                <a class="main-category">
+                    <h5>Supplementary Benefits</h5>
+                    <ul id="supplementaryBenefits"></ul>
                 </a>
             </div>
-        </div>
-
-        <div class="main-categories d-flex flex-column flex-sm-row justify-content-evenly p-3 gap-3 mb-1">
-            <a href="/user/benefit/benefit.html?id=statutory-benefits" class="main-category">
-                <h5>Statutory Benefits</h5>
-                <p>Explore statutory benefits like EPF, ESI, <br> and more.</p>
-                <span>View Benefits <i class="fa-solid fa-arrow-up-right-from-square fa-2x"></i></span>
-            </a>
-            <a href="/user/benefit/benefit.html?id=tax-saving-benefits" class="main-category">
-                <h5>Tax-saving Benefits</h5>
-                <p>Learn about meal cards, LTA, NPS, and other tax- <br>saving options.</p>
-                <span>View Benefits <i class="fa-solid fa-arrow-up-right-from-square fa-2x"></i></span>
-            </a>
-            <a href="/user/benefit/benefit.html?id=supplementary-benefits" class="main-category">
-                <h5>Supplementary Benefits</h5>
-                <p>Discover additional benefits like medical insurance, wellness sessions, and more.</p>
-                <span>View Benefits <i class="fa-solid fa-arrow-up-right-from-square fa-2x"></i></span>
-            </a>
-        </div>
+        </section>    
     </main>
 
     <footer class="footer">
