@@ -247,11 +247,12 @@ main{
   width: fit-content;
   margin: 0 auto;
 
-  /* list-style: none;
-  padding: 10px; */
+  list-style: none;
+  padding: 10px;
 }
 .main-category li{
   padding: 5px;
+  text-align: center;
 
   /* border: 2px solid grey;
   text-align: center;
@@ -263,9 +264,9 @@ main{
   transform: scale(1.01);
 }
 .main-category a{
-  font-size: 0.8rem;
-  text-align: left;
-
+  font-size: 0.9rem;
+  text-align: center;
+  text-decoration: none;
   /* margin: 8px;
   padding: 5px;
   border-radius: 10px;

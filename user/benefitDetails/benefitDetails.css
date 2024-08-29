@@ -75,7 +75,7 @@ main {
 }
 .leftNavBanner {
   height: fit-content;
-  border: 2px solid var(--expRed);
+  /* border: 2px solid var(--expRed); */
   border-radius: 8px;
   text-align: center;
 }
@@ -89,11 +89,12 @@ main {
 }
 .leftNavList {
   border-radius: 5px;
-  border: 1px solid var(--expRed);
+  /* border: 1px solid var(--expRed); */
 }
 .leftNavItem {
   border-radius: 5px;
-  margin: 3px;
+  margin: 1px;
+  padding: 3px;
 }
 .leftNavLink {
   border-radius: 5px;
